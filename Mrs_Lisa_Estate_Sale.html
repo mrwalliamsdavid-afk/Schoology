@@ -376,6 +376,177 @@ section{scroll-margin-top:70px}
 .cform input:focus{border-color:var(--brand);background:#fff;box-shadow:0 0 0 3px rgba(71,176,237,.25)}
 .send{width:36px;height:36px;border-radius:50%;border:0;background:var(--brand);color:#fff;font-size:15px;flex-shrink:0}
 
+/* Chat launcher: gentle bounce and an "online" label while the chat is closed */
+.launch{position:fixed;animation:nudge 3.6s ease-in-out infinite}
+.launch:hover{animation-play-state:paused}
+.l-tag{position:absolute;right:calc(100% + 10px);top:50%;transform:translateY(-50%);display:inline-flex;align-items:center;gap:6px;white-space:nowrap;background:#fff;color:var(--navy);font-family:"Open Sans",system-ui,sans-serif;font-size:11px;font-weight:700;line-height:1;padding:7px 11px;border-radius:999px;box-shadow:0 8px 20px rgba(10,24,38,.18);pointer-events:none}
+.l-dot{width:7px;height:7px;border-radius:50%;background:var(--brand);box-shadow:0 0 0 0 rgba(15,108,181,.6);animation:ping 1.6s infinite}
+@keyframes nudge{0%,78%,100%{transform:translateY(0)}84%{transform:translateY(-7px)}90%{transform:translateY(0)}95%{transform:translateY(-3px)}}
+
+/* Phone layout (below 640px): smaller type, tighter spacing and containers */
+@media(max-width:639px){
+  body{font-size:10px}
+  .sec{padding:30px 0}
+  .head{margin-bottom:16px}
+  .head h2{font-size:16px}
+  .head p{font-size:10px;margin-top:6px}
+  .eyebrow{font-size:8px;letter-spacing:.14em}
+  .eyebrow:before,.eyebrow:after{width:10px}
+  .btn{padding:6px 11px;font-size:10px}
+  .top{height:60px}
+  .mm{top:60px}
+  .logo{height:30px}
+  .hero{padding:66px 0 70px}
+  .hero h1{font-size:20px;margin-top:10px}
+  .lead{font-size:10px;margin-top:8px;line-height:1.6}
+  .pill{font-size:8.5px;padding:3px 8px}
+  .ctas{margin-top:14px;gap:6px}
+  .stats{max-width:100%;gap:6px;margin-top:16px}
+  .stat{padding:6px 7px}
+  .stat b{font-size:14px}
+  .stat span{font-size:7.5px;margin-top:3px;letter-spacing:.04em}
+  .hmedia img{height:170px}
+  .hcap{left:10px;right:10px;bottom:10px;padding:7px 9px}
+  .hcap small{font-size:7.5px}
+  .hcap b{font-size:11px}
+  .wave{height:36px}
+  .upd{margin-top:-24px;padding:0 10px}
+  .ch{padding:9px 11px;gap:8px}
+  .ch .av{width:28px;height:28px;padding:4px}
+  .ch b{font-size:10px}
+  .ch small{font-size:8.5px}
+  .tag{font-size:7px;padding:3px 6px}
+  .cm{height:120px}
+  .cm h2{font-size:14px}
+  .cm small{font-size:7.5px}
+  .cm>div{padding:12px 14px}
+  .cb{padding:11px 12px 12px}
+  .cb p{font-size:9.5px;line-height:1.55}
+  .pts{gap:5px;margin-top:10px}
+  .pts li{font-size:9px;padding:5px 7px}
+  .note{font-size:9px;padding:7px 9px;margin-top:10px}
+  .note i{width:15px;height:15px;font-size:9px}
+  .sl-img{min-height:140px}
+  .sl-cap{padding:10px 12px}
+  .sl-cap h3{font-size:13px;margin-top:5px}
+  .tg{font-size:7.5px;padding:2px 5px}
+  .sl-info{padding:12px}
+  .lbl{font-size:7.5px}
+  .price{font-size:16px}
+  .blurb{font-size:9.5px;margin-top:5px}
+  .sl-btns{margin-top:9px;gap:5px}
+  .sl-btns .btn{padding:5px 9px;font-size:9px}
+  .sl-nav{margin-top:10px}
+  .arr{width:28px;height:28px;font-size:11px}
+  .thumbs{gap:5px;margin-top:10px}
+  .th{padding:5px;gap:6px}
+  .th img{width:40px;height:29px}
+  .th small{font-size:7px}
+  .th strong{font-size:9px}
+  .tools input,.tools select{font-size:10px;padding:6px 8px}
+  .tog{font-size:9.5px;padding:6px 8px}
+  .pill-b{font-size:9px;padding:4px 8px}
+  .count{font-size:9.5px}
+  .ps{font-size:11px}
+  .chip-b{font-size:8.5px;padding:3px 6px}
+  .ib{padding:7px}
+  .ib small{font-size:7px}
+  .ib h3{font-size:10px}
+  .bd{font-size:7.5px;padding:2px 4px}
+  .more .btn{font-size:9.5px;padding:6px 12px}
+  .vw{padding:10px}
+  .vs{height:190px}
+  .vph{height:170px}
+  .vph b{font-size:13px}
+  .vi{padding:12px}
+  .vi>small{font-size:8px}
+  .vi h3{font-size:14px}
+  .vi .cat{font-size:9px}
+  .vi .price{font-size:17px;margin-top:10px}
+  .vdet{font-size:9.5px;margin-top:10px}
+  .vdet .dt{font-size:11px}
+  .vdet .dl{font-size:9px}
+  .vi .n{font-size:9px}
+  .vi .acts{margin-top:12px;gap:6px}
+  .vi .fine{font-size:8px;padding-top:10px}
+  .vx{width:28px;height:28px;font-size:16px}
+  .vn{width:28px;height:28px;font-size:12px}
+  .vt img{width:46px;height:33px}
+  .hp{min-height:230px}
+  .hp>div{padding:14px}
+  .hp small{font-size:8px}
+  .hp h3{font-size:14px}
+  .hp p{font-size:9.5px}
+  .wbox{font-size:9.5px;padding:7px 9px;margin-top:10px}
+  .wbox b{font-size:8px}
+  .steps-c{padding:14px}
+  .step{padding:9px 0;gap:9px}
+  .step .n{font-size:14px;min-width:20px}
+  .step h4{font-size:11px}
+  .step p{font-size:9.5px}
+  .chk{margin-top:10px;padding:9px}
+  .chk small{font-size:8px}
+  .chk li{font-size:9.5px}
+  .steps-c .btn{margin-top:12px!important}
+  .faq summary{font-size:10px;padding:9px 11px}
+  .faq summary span{font-size:14px}
+  .faq .a{font-size:9.5px;padding:0 11px 10px}
+  .faq details{margin-bottom:6px}
+  .faq-g{gap:20px}
+  .faq-g img{height:140px!important;margin-top:14px!important}
+  .faq-g h2{font-size:17px!important}
+  .ct-in{padding:14px;gap:14px}
+  .ct-info h2{font-size:15px}
+  .ct-info>p{font-size:9.5px}
+  .person{padding:10px;margin-top:14px}
+  .person b{font-size:11px}
+  .person small{font-size:8.5px}
+  .person a{font-size:9px}
+  .person button{font-size:9px;padding:4px 8px}
+  .ct-info .note{font-size:9px}
+  .form{padding:12px;gap:8px}
+  .form label{font-size:7.5px;margin-bottom:3px}
+  .form input,.form textarea{font-size:10px;padding:6px 8px}
+  .form .foot2 small{font-size:8.5px}
+  .foot-s{padding:24px 0 14px}
+  .logos span{padding:4px 7px}
+  .logos img{height:15px}
+  .logos .sc{height:18px;width:18px}
+  .fr p{font-size:9px}
+  .fr b{font-size:9.5px}
+  .fr a{font-size:9px}
+  .fr small{font-size:8px}
+  .fb{font-size:8px;margin-top:20px;padding-top:12px}
+  .launch{width:46px;height:46px;font-size:18px;right:12px;bottom:12px}
+  .l-tag{font-size:9px;padding:5px 8px}
+  .chat{right:12px;bottom:12px;width:272px}
+  .chead{padding:8px 9px}
+  .cav{width:26px;height:26px}
+  .chead b{font-size:10px}
+  .chead span{font-size:8px}
+  .chead button{width:26px;height:26px;font-size:14px}
+  .cnote{font-size:8.5px;padding:6px 9px}
+  .msgs{height:215px;padding:9px 7px}
+  .m{gap:5px;margin-bottom:8px}
+  .mav{width:18px;height:18px}
+  .bw{max-width:86%}
+  .bub{font-size:9.5px;padding:5px 8px;line-height:1.45}
+  .sum{margin-top:6px}
+  .sum h5{font-size:8px;padding:5px 8px}
+  .sum img{height:70px}
+  .sum dl{padding:2px 8px}
+  .sum dl>div{font-size:9px;grid-template-columns:58px 1fr;gap:6px;padding:4px 0}
+  .mnote{font-size:8.5px;padding:6px 8px}
+  .btn-full,.msgs .btn{font-size:9.5px;padding:6px 10px}
+  .fine2{font-size:8px}
+  .cmp{padding:8px}
+  .chips{margin-bottom:6px;gap:4px}
+  .chip{font-size:8.5px;padding:3px 7px}
+  .cform{gap:6px}
+  .cform input{font-size:10px;padding:5px 9px}
+  .send{width:28px;height:28px;font-size:11px}
+}
+
 /* Motion */
 @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
@@ -643,7 +814,7 @@ section{scroll-margin-top:70px}
 </div>
 
 <!-- Live chat -->
-<button class="launch" id="launch" aria-label="Open chat with Cheryl" hidden>💬</button>
+<button class="launch" id="launch" aria-label="Open chat with Cheryl — support is online" hidden><span class="l-tag"><span class="l-dot"></span>Cheryl is online</span>💬</button>
 <section class="chat" id="chat" aria-label="Chat with Cheryl">
   <div class="chead" id="chead">
     <img class="cav" src="https://www.image2url.com/r2/default/images/1791502498186-6c89228d-4e90-4189-a55a-244cf6eb2e85.png" alt="Cheryl">
