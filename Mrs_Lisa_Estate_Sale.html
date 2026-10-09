@@ -151,39 +151,52 @@ section{scroll-margin-top:70px}
 .tog{border:1px solid var(--line);background:#fff;color:#334155;border-radius:6px;padding:10px 14px;font-size:12.5px;font-weight:600;white-space:nowrap}
 .tog.on{border-color:var(--brand);background:var(--pic1);color:var(--brand2)}
 .pills{display:flex;gap:6px;overflow-x:auto;margin-top:16px;padding-bottom:4px}
-.pill-b{flex-shrink:0;border:0;border-radius:999px;background:#f1f5f9;color:#475569;padding:7px 14px;font-size:12px;font-weight:600}
+.pill-b{flex-shrink:0;border:0;border-radius:999px;background:#f1f5f9;color:#475569;padding:5px 10px;font-size:11px;font-weight:600}
 .pill-b.on{background:var(--navy);color:#fff}
 .pill-b i{font-style:normal;font-size:10.5px;color:#94a3b8;margin-left:4px}
 .pill-b.on i{color:var(--pic3)}
 .count{margin-top:18px;font-size:12px;color:#64748b}
 .count b{color:var(--navy)}
 .grid{margin-top:14px;display:grid;gap:12px;grid-template-columns:1fr}
-@media(min-width:640px){.grid{grid-template-columns:1fr 1fr}}
+
 @media(min-width:1024px){.grid{grid-template-columns:repeat(3,1fr)}}
 .it{background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden;display:flex;flex-direction:column;animation:fadeUp .4s both;transition:transform .25s,box-shadow .25s}
 .it:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(19,41,61,.08)}
 .it.sold{opacity:.72}
-.ii{position:relative;height:150px;overflow:hidden;background:#f1f5f9;cursor:zoom-in}
+.ii{position:relative;height:96px;overflow:hidden;background:#f1f5f9;cursor:zoom-in}
 .ii img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
 .it:hover .ii img{transform:scale(1.05)}
 .sold .ii img{filter:grayscale(1)}
 .ii.ph{display:grid;place-items:center;background:linear-gradient(135deg,var(--pic1),#e2e8f0);padding:12px;text-align:center}
-.ph-t{font-size:11.5px;font-weight:700;color:var(--brand2)}
-.bd{position:absolute;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px}
+.ph-t{font-size:9px;font-weight:700;color:var(--brand2);line-height:1.3}
+.bd{position:absolute;font-size:8px;font-weight:700;padding:2px 5px;border-radius:4px}
 .bd-num{right:10px;top:10px;background:#fff;color:var(--navy);box-shadow:0 2px 6px rgba(0,0,0,.15)}
 .bd-sold{left:10px;top:10px;background:rgba(19,41,61,.85);color:#fff;text-transform:uppercase;letter-spacing:.08em}
 .bd-ph{right:10px;bottom:10px;background:rgba(10,24,38,.72);color:#fff;font-weight:600}
-.ib{padding:14px;display:flex;flex-direction:column;flex:1}
-.ib small{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#94a3b8}
-.ib h3{margin-top:3px;font-size:13.5px;font-weight:600;color:var(--navy);cursor:pointer}
+.ib{padding:8px;display:flex;flex-direction:column;flex:1}
+.ib small{font-size:7.5px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#94a3b8}
+.ib h3{margin-top:2px;font-size:11px;line-height:1.3;font-weight:600;color:var(--navy);cursor:pointer}
 .ib h3:hover{color:var(--brand)}
 .sold h3{text-decoration:line-through}
 .foot{margin-top:auto;padding-top:12px;display:flex;align-items:center;justify-content:space-between;gap:8px}
-.ps{font-family:Signika,sans-serif;font-size:16px;font-weight:700;color:var(--brand2)}
-.muted{font-size:11.5px;font-weight:600;color:#94a3b8}
-.chip-b{border:0;border-radius:6px;background:var(--pic1);color:var(--brand2);font-size:11px;font-weight:700;padding:5px 10px}
+.ps{font-family:Signika,sans-serif;font-size:12px;font-weight:700;color:var(--brand2)}
+.muted{font-size:9px;font-weight:600;color:#94a3b8}
+.chip-b{border:0;border-radius:5px;background:var(--pic1);color:var(--brand2);font-size:9.5px;font-weight:700;padding:3px 6px}
 .chip-b:hover{background:var(--brand);color:#fff}
 .more{margin-top:24px;display:flex;justify-content:center}
+@media(min-width:640px){
+  .ii{height:150px}
+  .ph-t{font-size:11.5px}
+  .ib{padding:14px}
+  .ib small{font-size:9.5px}
+  .ib h3{font-size:13.5px}
+  .ps{font-size:16px}
+  .chip-b{font-size:11px;padding:5px 10px}
+  .bd{font-size:10px;padding:3px 8px}
+  .pill-b{font-size:12px;padding:7px 14px}
+  .muted{font-size:11.5px}
+  .grid{gap:12px}
+}
 
 /* Item viewer */
 .vw{position:fixed;inset:0;z-index:80;background:rgba(10,24,38,.75);backdrop-filter:blur(4px);display:grid;place-items:center;padding:16px;animation:fadeIn .2s both}
@@ -205,7 +218,7 @@ section{scroll-margin-top:70px}
 .vt img{width:64px;height:46px;object-fit:cover;border-radius:5px;border:2px solid transparent;flex-shrink:0;cursor:pointer;opacity:.6}
 .vt img.on{border-color:var(--brand);opacity:1}
 .vi{padding:22px;display:flex;flex-direction:column;max-height:80vh;overflow-y:auto}
-.vi>small{font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--brand)}
+.vi>small{font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppe.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--brand)}
 .vi h3{margin-top:6px;font-size:21px;line-height:1.25}
 .vi .cat{margin-top:6px;font-size:11.5px;font-weight:600;color:#64748b}
 .vi .price{margin-top:14px;font-size:28px}
@@ -449,7 +462,7 @@ section{scroll-margin-top:70px}
 </section>
 
 <!-- Inventory -->
-<section id="inventory" class="sec" style="background:#fff">
+<section id="inventory" class="sec inv" style="background:#fff">
   <div class="wrap">
     <div class="head reveal">
       <span class="eyebrow">Inventory</span>
@@ -1413,6 +1426,11 @@ $("#cmin").onclick = e => { e.stopPropagation(); $("#chat").classList.toggle("mi
 $("#chead").onclick = () => $("#chat").classList.toggle("min");
 
 /* Open the chat once after a short delay, with Cheryl's greeting */
+setTimeout(() => openChat(), 2200);
+</script>
+</body>
+</html>
+eting */
 setTimeout(() => openChat(), 2200);
 </script>
 </body>
