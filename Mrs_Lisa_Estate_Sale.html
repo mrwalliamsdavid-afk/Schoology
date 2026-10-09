@@ -1,29 +1,1444 @@
-import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
-import Announcement from "./components/Announcement";
-import FeaturedSlider from "./components/FeaturedSlider";
-import Inventory from "./components/Inventory";
-import HowToBuy from "./components/HowToBuy";
-import FAQ from "./components/FAQ";
-import Contact from "./components/Contact";
-import Footer from "./components/Footer";
-import ChatWidget from "./components/ChatWidget";
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Mrs. Lisa's estate sale. Items handled by The Property Law Firm CB LLP. Shared via PowerSchool Schoology Learning.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&family=Signika:wght@600;700&display=swap" rel="stylesheet">
+<title>Mrs. Lisa's Estate Sale · PowerSchool Schoology Learning</title>
+<style>
+:root{--navy:#13293d;--navy2:#0a1826;--brand:#0f6cb5;--brand2:#0b5694;--pic:#47b0ed;--pic3:#9dd6f7;--pic1:#e6f5fd;--line:#e2e8f0;--bg:#f3f6f9}
+*{box-sizing:border-box;margin:0;padding:0}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:"Open Sans",system-ui,Arial,sans-serif;background:var(--bg);color:#334155;font-size:13px;line-height:1.55;overflow-x:hidden}
+h1,h2,h3,h4{font-family:Signika,"Open Sans",sans-serif;color:var(--navy);line-height:1.2}
+img{display:block;max-width:100%}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+a{color:inherit;text-decoration:none}
+section{scroll-margin-top:70px}
+.wrap{max-width:1152px;margin:0 auto;padding:0 16px}
+@media(min-width:640px){.wrap{padding:0 24px}}
+.sec{padding:56px 0}
+@media(min-width:1024px){.sec{padding:64px 0}}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:10.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--brand)}
+.eyebrow:before,.eyebrow:after{content:"";width:20px;height:1px;background:var(--pic)}
+.head{text-align:center;max-width:620px;margin:0 auto 34px}
+.head h2{margin-top:10px;font-size:24px;font-weight:700}
+.head p{margin-top:10px;color:#475569;font-size:13px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border-radius:6px;padding:9px 18px;font-size:12.5px;font-weight:600;border:1px solid transparent;transition:.2s;white-space:nowrap}
+.btn:hover{transform:translateY(-1px)}
+.b-pri{background:var(--brand);color:#fff;box-shadow:0 4px 14px rgba(15,108,181,.25)}
+.b-pri:hover{background:var(--brand2)}
+.b-nav{background:var(--navy);color:#fff}
+.b-out{background:#fff;border-color:#cbd5e1;color:#334155}
+.b-out:hover{border-color:var(--brand);color:var(--brand)}
+.b-wh{background:#fff;color:var(--brand2)}
+.b-gh{border-color:rgba(255,255,255,.4);color:#fff}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s cubic-bezier(.22,1,.36,1)}
+.reveal.in{opacity:1;transform:none}
+.shake{animation:shake .6s ease-in-out}
 
-export default function App() {
-  return (
-    <div className="min-h-screen overflow-x-hidden font-sans text-slate-700 selection:bg-brand-600 selection:text-white">
-      <Navbar />
-      <main>
-        <Hero />
-        <Announcement />
-        <FeaturedSlider />
-        <Inventory />
-        <HowToBuy />
-        <FAQ />
-        <Contact />
-      </main>
-      <Footer />
-      <ChatWidget />
+/* Top bar: PowerSchool logo alone */
+.top{position:fixed;top:0;left:0;right:0;height:68px;background:#fff;border-bottom:1px solid var(--line);z-index:50;transition:box-shadow .3s}
+.top.sc{box-shadow:0 6px 20px rgba(19,41,61,.08)}
+.top .wrap{height:100%;display:flex;align-items:center;gap:16px}
+.logo{height:40px;width:auto;max-width:230px;object-fit:contain}
+@media(min-width:640px){.logo{height:46px}}
+.nav{margin-left:auto;display:none;gap:2px}
+.nav a{padding:6px 12px;border-radius:6px;font-size:12.5px;font-weight:600;color:#475569}
+.nav a:hover{background:var(--pic1);color:var(--brand)}
+.top .b-pri{display:none;margin-left:8px;padding:8px 16px}
+.menu{margin-left:auto;width:36px;height:36px;border:0;background:none;font-size:20px;color:var(--navy);border-radius:6px}
+.mm{position:fixed;top:68px;left:0;right:0;background:#fff;border-bottom:1px solid var(--line);padding:10px;display:grid;grid-template-columns:1fr 1fr;gap:4px;z-index:49;box-shadow:0 12px 24px rgba(19,41,61,.1)}
+.mm a{padding:10px 12px;border-radius:6px;font-weight:600;font-size:12.5px}
+@media(min-width:1024px){.nav{display:flex}.top .b-pri{display:inline-flex}.menu{display:none}.mm{display:none!important}}
+
+/* Hero */
+.hero{position:relative;overflow:hidden;padding:104px 0 110px;background:linear-gradient(135deg,var(--brand2),var(--brand) 55%,var(--pic));color:#fff}
+.hero:before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.22) 1px,transparent 1px);background-size:22px 22px}
+.hg{position:relative;display:grid;gap:36px;align-items:center}
+@media(min-width:1024px){.hg{grid-template-columns:1.05fr 1fr;gap:48px}}
+.pill{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.1);padding:4px 12px;border-radius:999px;font-size:11px;font-weight:600}
+.dot-live{width:7px;height:7px;border-radius:50%;background:var(--pic3);animation:ping 1.8s infinite}
+.hero h1{color:#fff;margin-top:16px;font-size:28px;font-weight:700}
+@media(min-width:640px){.hero h1{font-size:36px}}
+.hero h1 span{background:linear-gradient(90deg,#fff,var(--pic3),#fff);background-size:200%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:gx 6s linear infinite}
+.lead{margin-top:14px;max-width:520px;color:rgba(255,255,255,.88);font-size:13.5px;line-height:1.7}
+.lead b{color:#fff}
+.ctas{margin-top:24px;display:flex;flex-wrap:wrap;gap:10px}
+.stats{margin-top:26px;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:440px}
+.stat{border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.1);border-radius:10px;padding:10px 12px}
+.stat b{display:block;font-family:Signika,sans-serif;font-size:20px;line-height:1}
+.stat span{display:block;margin-top:6px;font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.75)}
+.hmedia{position:relative;border-radius:14px;overflow:hidden;box-shadow:0 24px 50px rgba(10,24,38,.35);border:1px solid rgba(255,255,255,.2)}
+.hmedia img{width:100%;height:280px;object-fit:cover}
+@media(min-width:640px){.hmedia img{height:360px}}
+.hcap{position:absolute;left:16px;right:16px;bottom:16px;background:rgba(255,255,255,.96);color:var(--navy);border-radius:10px;padding:12px 14px}
+.hcap small{display:block;font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--brand)}
+.hcap b{font-family:Signika,sans-serif;font-size:15px}
+.wave{position:absolute;left:0;right:0;bottom:-1px;width:100%;height:56px}
+
+/* Update card */
+.upd{max-width:768px;margin:-48px auto 0;position:relative;z-index:2;padding:0 16px}
+.card{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:0 8px 24px rgba(19,41,61,.06)}
+.ch{display:flex;align-items:center;gap:12px;padding:14px 20px}
+.ch .av{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);padding:6px;display:grid;place-items:center;flex-shrink:0}
+.ch .av img{width:100%;height:100%;object-fit:contain}
+.ch b{display:block;font-size:13px;color:#1e293b}
+.ch small{font-size:11.5px;color:#64748b}
+.ch small em{color:var(--brand);font-style:normal;font-weight:600}
+.tag{margin-left:auto;background:var(--pic1);color:var(--brand2);font-size:10px;font-weight:700;text-transform:uppercase;padding:4px 8px;border-radius:4px}
+.cm{position:relative;height:200px;overflow:hidden}
+.cm img{width:100%;height:100%;object-fit:cover}
+.cm:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(11,86,148,.92),rgba(15,108,181,.55),transparent)}
+.cm>div{position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;justify-content:flex-end;padding:20px 22px;color:#fff}
+.cm small{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--pic3)}
+.cm h2{color:#fff;font-size:22px;margin-top:4px}
+.cb{padding:20px 22px 22px}
+.cb p{color:#475569;line-height:1.7}
+.cb p b{color:var(--navy)}
+.pts{list-style:none;margin-top:16px;display:grid;gap:8px}
+@media(min-width:640px){.pts{grid-template-columns:1fr 1fr}}
+.pts li{display:flex;align-items:center;gap:10px;background:#f8fafc;border:1px solid #edf1f5;border-radius:8px;padding:10px 12px;font-weight:600;font-size:12.5px;color:#334155}
+.pts li:before{content:"";width:6px;height:6px;border-radius:50%;background:var(--pic);flex-shrink:0}
+.note{margin-top:16px;display:flex;gap:10px;align-items:flex-start;background:var(--pic1);border:1px solid var(--pic3);border-radius:8px;padding:12px 14px;font-size:12px;color:var(--navy)}
+.note b{color:var(--brand2)}
+.note i{width:22px;height:22px;border-radius:50%;background:var(--brand);color:#fff;font-style:normal;font-weight:700;display:grid;place-items:center;flex-shrink:0}
+
+/* Featured slider */
+.slider{border:1px solid var(--line);border-radius:12px;background:#fff;overflow:hidden;box-shadow:0 6px 18px rgba(19,41,61,.05);touch-action:pan-y;user-select:none}
+.sl{display:grid;animation:fadeUp .5s both}
+@media(min-width:768px){.sl{grid-template-columns:2fr 3fr}}
+.sl-img{position:relative;min-height:240px;overflow:hidden;background:var(--navy);cursor:zoom-in}
+.sl-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.sl-img:after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(10,24,38,.9),rgba(10,24,38,.25) 50%,transparent)}
+.sl-cap{position:absolute;left:0;right:0;bottom:0;z-index:1;padding:20px 22px;color:#fff}
+.sl-cap h3{color:#fff;font-size:21px;margin-top:8px}
+.tg{display:inline-block;background:rgba(255,255,255,.18);padding:3px 8px;border-radius:4px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+.sl-info{padding:24px;display:flex;flex-direction:column;justify-content:center}
+@media(min-width:768px){.sl-info{padding:30px 32px}}
+.lbl{font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#64748b}
+.price{margin-top:4px;font-family:Signika,sans-serif;font-size:26px;font-weight:700;color:var(--brand2);line-height:1}
+.blurb{margin-top:12px;color:#475569}
+.sl-btns{margin-top:18px;display:flex;flex-wrap:wrap;gap:8px}
+.sl-nav{display:flex;align-items:center;justify-content:space-between;margin-top:14px;gap:12px}
+.arr{width:36px;height:36px;border-radius:6px;border:1px solid var(--line);background:#fff;font-size:15px;color:#334155}
+.arr:hover{border-color:var(--brand);color:var(--brand)}
+.dots{display:flex;gap:6px;align-items:center}
+.dots button{width:6px;height:6px;border-radius:99px;border:0;background:#cbd5e1;transition:.3s}
+.dots button.on{width:24px;background:var(--brand)}
+.thumbs{display:grid;gap:8px;margin-top:14px;grid-template-columns:1fr}
+@media(min-width:640px){.thumbs{grid-template-columns:1fr 1fr}}
+@media(min-width:1024px){.thumbs{grid-template-columns:repeat(3,1fr)}}
+.th{position:relative;display:flex;align-items:center;gap:10px;padding:8px;border-radius:8px;border:1px solid var(--line);background:#fff;text-align:left;overflow:hidden}
+.th img{width:60px;height:42px;border-radius:5px;object-fit:cover;flex-shrink:0}
+.th small{display:block;font-size:9px;font-weight:700;text-transform:uppercase;color:#94a3b8}
+.th strong{display:block;font-size:12px;font-weight:600;color:var(--navy);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.th.on{border-color:rgba(15,108,181,.4);box-shadow:0 2px 8px rgba(15,108,181,.08)}
+.th.on:after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--pic)}
+
+/* Inventory */
+.tools{display:flex;flex-direction:column;gap:10px}
+@media(min-width:768px){.tools{flex-direction:row;align-items:center}}
+.tools input,.tools select{border:1px solid var(--line);border-radius:6px;background:#f8fafc;padding:7px 10px;font-size:11.5px;outline:none}
+@media(min-width:640px){.tools input,.tools select{padding:10px 12px;font-size:13px}}
+.tools input{flex:1}
+.tools input:focus,.tools select:focus{border-color:var(--brand);background:#fff;box-shadow:0 0 0 3px rgba(71,176,237,.25)}
+.trow{display:flex;gap:8px}
+.tog{border:1px solid var(--line);background:#fff;color:#334155;border-radius:6px;padding:7px 10px;font-size:11px;font-weight:600;white-space:nowrap}
+@media(min-width:640px){.tog{padding:10px 14px;font-size:12.5px}}
+.tog.on{border-color:var(--brand);background:var(--pic1);color:var(--brand2)}
+.pills{display:flex;gap:4px;overflow-x:auto;margin-top:12px;padding-bottom:4px;scrollbar-width:none}
+.pills::-webkit-scrollbar{display:none}
+@media(min-width:640px){.pills{gap:6px;margin-top:16px}}
+.pill-b{flex-shrink:0;border:0;border-radius:999px;background:#f1f5f9;color:#475569;padding:5px 10px;font-size:10.5px;font-weight:600}
+@media(min-width:640px){.pill-b{padding:7px 14px;font-size:12px}}
+.pill-b.on{background:var(--navy);color:#fff}
+.pill-b i{font-style:normal;font-size:9.5px;color:#94a3b8;margin-left:3px}
+@media(min-width:640px){.pill-b i{font-size:10.5px;margin-left:4px}}
+.pill-b.on i{color:var(--pic3)}
+.count{margin-top:12px;font-size:11px;color:#64748b}
+@media(min-width:640px){.count{margin-top:18px;font-size:12px}}
+.count b{color:var(--navy)}
+/* Inventory: sits higher on the page, two listings per row on phones, smaller type */
+.inv{padding-top:28px}
+.inv .head{margin-bottom:18px}
+.inv .head h2{font-size:18px}
+.inv .head p{font-size:11px;margin-top:6px}
+@media(min-width:640px){.inv{padding-top:40px}.inv .head{margin-bottom:26px}.inv .head h2{font-size:24px}.inv .head p{font-size:13px}}
+@media(min-width:1024px){.inv{padding-top:48px}}
+.grid{margin-top:12px;display:grid;gap:8px;grid-template-columns:1fr 1fr}
+@media(min-width:640px){.grid{gap:12px}}
+@media(min-width:640px){.grid{grid-template-columns:1fr 1fr}}
+@media(min-width:1024px){.grid{grid-template-columns:repeat(3,1fr)}}
+.it{background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden;display:flex;flex-direction:column;animation:fadeUp .4s both;transition:transform .25s,box-shadow .25s}
+.it:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(19,41,61,.08)}
+.it.sold{opacity:.72}
+.ii{position:relative;height:96px;overflow:hidden;background:#f1f5f9;cursor:zoom-in}
+@media(min-width:640px){.ii{height:150px}}
+.ii img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.it:hover .ii img{transform:scale(1.05)}
+.sold .ii img{filter:grayscale(1)}
+.ii.ph{display:grid;place-items:center;background:linear-gradient(135deg,var(--pic1),#e2e8f0);padding:12px;text-align:center}
+.ph-t{font-size:9.5px;font-weight:700;color:var(--brand2)}
+@media(min-width:640px){.ph-t{font-size:11.5px}}
+.bd{position:absolute;font-size:8.5px;font-weight:700;padding:2px 5px;border-radius:3px}
+@media(min-width:640px){.bd{font-size:10px;padding:3px 8px;border-radius:4px}}
+.bd-num{right:10px;top:10px;background:#fff;color:var(--navy);box-shadow:0 2px 6px rgba(0,0,0,.15)}
+.bd-sold{left:10px;top:10px;background:rgba(19,41,61,.85);color:#fff;text-transform:uppercase;letter-spacing:.08em}
+.bd-ph{right:10px;bottom:10px;background:rgba(10,24,38,.72);color:#fff;font-weight:600}
+.ib{padding:8px;display:flex;flex-direction:column;flex:1;min-width:0}
+@media(min-width:640px){.ib{padding:14px}}
+.ib small{font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#94a3b8}
+@media(min-width:640px){.ib small{font-size:9.5px;letter-spacing:.08em}}
+.ib h3{margin-top:2px;font-size:11px;line-height:1.3;font-weight:600;color:var(--navy);cursor:pointer;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+@media(min-width:640px){.ib h3{margin-top:3px;font-size:13.5px;line-height:1.2}}
+.ib h3:hover{color:var(--brand)}
+.sold h3{text-decoration:line-through}
+.foot{margin-top:auto;padding-top:7px;display:flex;align-items:center;justify-content:space-between;gap:4px}
+@media(min-width:640px){.foot{padding-top:12px;gap:8px}}
+.ps{font-family:Signika,sans-serif;font-size:12.5px;font-weight:700;color:var(--brand2)}
+@media(min-width:640px){.ps{font-size:16px}}
+.muted{font-size:9.5px;font-weight:600;color:#94a3b8}
+@media(min-width:640px){.muted{font-size:11.5px}}
+.chip-b{border:0;border-radius:4px;background:var(--pic1);color:var(--brand2);font-size:9.5px;font-weight:700;padding:3px 7px;flex-shrink:0}
+@media(min-width:640px){.chip-b{border-radius:6px;font-size:11px;padding:5px 10px}}
+.chip-b:hover{background:var(--brand);color:#fff}
+.more{margin-top:24px;display:flex;justify-content:center}
+
+/* Item viewer */
+.vw{position:fixed;inset:0;z-index:80;background:rgba(10,24,38,.75);backdrop-filter:blur(4px);display:grid;place-items:center;padding:16px;animation:fadeIn .2s both}
+.vc{position:relative;width:100%;max-width:920px;max-height:calc(100vh - 32px);overflow-y:auto;background:#fff;border-radius:14px;display:grid;box-shadow:0 30px 60px rgba(0,0,0,.35);animation:pop .3s cubic-bezier(.22,1,.36,1) both}
+@media(min-width:768px){.vc{grid-template-columns:3fr 2fr}}
+.vx{position:absolute;top:10px;right:10px;z-index:3;width:34px;height:34px;border-radius:50%;border:0;background:#fff;font-size:20px;box-shadow:0 4px 10px rgba(0,0,0,.2)}
+.vs{position:relative;height:260px;background:var(--navy2);overflow:hidden}
+@media(min-width:768px){.vs{height:380px}}
+.vs img{width:100%;height:100%;object-fit:cover;animation:fadeIn .35s both}
+.vn{position:absolute;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;border:0;background:rgba(255,255,255,.92);font-size:15px;box-shadow:0 4px 10px rgba(0,0,0,.2)}
+.vp{left:10px}
+.vnx{right:10px}
+.vcount{position:absolute;left:12px;bottom:12px;background:rgba(10,24,38,.75);color:#fff;font-size:11px;font-weight:700;padding:3px 9px;border-radius:6px}
+.vph{height:260px;display:grid;place-items:center;align-content:center;text-align:center;padding:24px;background:linear-gradient(135deg,var(--navy2),var(--brand2));color:#fff}
+@media(min-width:768px){.vph{height:100%;min-height:380px}}
+.vph b{font-family:Signika,sans-serif;font-size:19px}
+.vph small{display:block;margin-top:6px;font-size:12.5px;color:var(--pic3)}
+.vt{display:flex;gap:6px;overflow-x:auto;padding:8px;background:#f8fafc;border-top:1px solid var(--line)}
+.vt img{width:64px;height:46px;object-fit:cover;border-radius:5px;border:2px solid transparent;flex-shrink:0;cursor:pointer;opacity:.6}
+.vt img.on{border-color:var(--brand);opacity:1}
+.vi{padding:22px;display:flex;flex-direction:column;max-height:80vh;overflow-y:auto}
+.vi>small{font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--brand)}
+.vi h3{margin-top:6px;font-size:21px;line-height:1.25}
+.vi .cat{margin-top:6px;font-size:11.5px;font-weight:600;color:#64748b}
+.vi .price{margin-top:14px;font-size:28px}
+.sold-p{color:#94a3b8!important}
+.vdet{margin-top:16px;font-size:12.5px}
+.vdet.blue{color:#0f6cb5}
+.vdet.red{color:#dc2626}
+.vdet .dt{font-family:Signika,sans-serif;font-size:14px;font-weight:700;line-height:1.3}
+.vdet .dl{margin-top:4px;font-weight:600}
+.vdet p+p{margin-top:8px}
+.vdet ul{list-style:none;margin-top:10px;display:grid;gap:5px}
+.vdet li{display:flex;gap:8px;line-height:1.45}
+.vdet li:before{content:"";width:5px;height:5px;margin-top:7px;border-radius:50%;background:currentColor;flex-shrink:0}
+.vi .n{margin-top:10px;font-size:12px;color:#475569}
+.vi .acts{margin-top:18px;display:flex;flex-wrap:wrap;gap:8px}
+.vi .fine{margin-top:auto;padding-top:14px;font-size:11px;color:#64748b}
+
+/* How to buy */
+.how{display:grid;gap:20px}
+@media(min-width:1024px){.how{grid-template-columns:1fr 1fr;align-items:stretch}}
+.hp{position:relative;min-height:340px;border-radius:12px;overflow:hidden}
+.hp img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hp:after{content:"";position:absolute;inset:0;background:linear-gradient(to top,var(--navy2),rgba(10,24,38,.6) 50%,rgba(10,24,38,.1))}
+.hp>div{position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;justify-content:flex-end;padding:24px;color:#fff}
+.hp small{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--pic3)}
+.hp h3{color:#fff;font-size:22px;margin-top:6px}
+.hp p{margin-top:8px;color:rgba(255,255,255,.85);font-size:12.5px}
+.wbox{margin-top:16px;background:#fff;color:var(--navy);border-radius:8px;padding:12px 14px;font-size:12.5px;border-left:4px solid var(--brand)}
+.wbox b{display:block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--brand2);margin-bottom:2px}
+.steps-c{background:#fff;border:1px solid var(--line);border-radius:12px;padding:24px}
+@media(min-width:640px){.steps-c{padding:28px}}
+.step{display:flex;gap:16px;padding:14px 0;border-bottom:1px solid #f1f5f9}
+.step:first-child{padding-top:0}
+.step:last-child{border-bottom:0}
+.step .n{font-family:Signika,sans-serif;font-size:22px;font-weight:700;color:var(--pic);min-width:30px;line-height:1}
+.step h4{font-size:14px;font-weight:700;color:var(--navy)}
+.step p{margin-top:3px;font-size:12.5px;color:#475569}
+.chk{margin-top:14px;background:var(--pic1);border-radius:8px;padding:14px}
+.chk small{font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--brand2)}
+.chk ul{list-style:none;margin-top:8px;display:grid;gap:6px}
+@media(min-width:640px){.chk ul{grid-template-columns:1fr 1fr}}
+.chk li{font-size:12.5px;display:flex;gap:8px;align-items:center}
+.chk li:before{content:"";width:6px;height:6px;border-radius:50%;background:var(--brand);flex-shrink:0}
+
+/* FAQ */
+.faq-g{display:grid;gap:32px}
+@media(min-width:1024px){.faq-g{grid-template-columns:.9fr 1.1fr;align-items:center}}
+.faq details{background:#fff;border:1px solid var(--line);border-radius:8px;margin-bottom:10px}
+.faq details[open]{border-color:rgba(15,108,181,.3);background:var(--pic1)}
+.faq summary{list-style:none;cursor:pointer;padding:14px 16px;font-size:13px;font-weight:600;color:var(--navy);display:flex;justify-content:space-between;align-items:center;gap:12px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary span{color:var(--brand);font-size:18px;line-height:1;transition:transform .3s}
+.faq details[open] summary span{transform:rotate(45deg)}
+.faq .a{padding:0 16px 14px;font-size:12.5px;color:#475569}
+
+/* Contact */
+.ct{position:relative;overflow:hidden;border-radius:16px;box-shadow:0 16px 40px rgba(19,41,61,.15)}
+.ct-bg{position:absolute;inset:0}
+.ct-bg img{width:100%;height:100%;object-fit:cover}
+.ct-bg:after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(10,24,38,.95),rgba(19,41,61,.9) 55%,rgba(11,86,148,.85))}
+.ct-in{position:relative;display:grid;gap:24px;padding:24px}
+@media(min-width:640px){.ct-in{padding:36px}}
+@media(min-width:1024px){.ct-in{grid-template-columns:2fr 3fr;padding:44px;gap:32px}}
+.ct-info{color:#fff}
+.ct-info .eyebrow{color:var(--pic3)}
+.ct-info .eyebrow:before,.ct-info .eyebrow:after{background:var(--pic3)}
+.ct-info h2{color:#fff;font-size:22px;margin-top:10px}
+.ct-info>p{margin-top:10px;color:rgba(255,255,255,.8)}
+.person{margin-top:22px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:10px;padding:16px}
+.person b{font-family:Signika,sans-serif;font-size:15px;color:#fff}
+.person small{display:block;font-size:11.5px;color:var(--pic3)}
+.person a{display:block;margin-top:10px;font-weight:600;word-break:break-all;text-decoration:underline;color:#fff}
+.person button{margin-top:10px;border:0;background:#fff;color:var(--navy);font-size:12px;font-weight:600;border-radius:6px;padding:6px 12px}
+.ct-info .note{background:rgba(255,255,255,.08);border-color:rgba(157,214,247,.4);color:#fff}
+.ct-info .note b{color:var(--pic3)}
+.ct-info .note i{background:var(--pic)}
+.form{background:#fff;border-radius:12px;padding:20px;display:grid;gap:14px;grid-template-columns:1fr;box-shadow:0 10px 30px rgba(0,0,0,.2)}
+@media(min-width:640px){.form{grid-template-columns:1fr 1fr;padding:24px}}
+.form .full{grid-column:1/-1}
+.form label{display:block;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#64748b;margin-bottom:5px}
+.form input,.form textarea{width:100%;border:1px solid var(--line);border-radius:6px;background:#f8fafc;padding:10px 12px;font-size:13px;outline:none;color:#1e293b}
+.form textarea{resize:none}
+.form input:focus,.form textarea:focus{border-color:var(--brand);background:#fff;box-shadow:0 0 0 3px rgba(71,176,237,.25)}
+.form .foot2{grid-column:1/-1;display:flex;flex-direction:column;gap:10px}
+@media(min-width:640px){.form .foot2{flex-direction:row;justify-content:space-between;align-items:center}}
+.form small{font-size:11.5px;color:#64748b}
+
+/* Footer */
+.foot-s{background:var(--navy2);color:#94a3b8;padding:40px 0 24px}
+.fr{display:flex;flex-direction:column;gap:22px}
+@media(min-width:768px){.fr{flex-direction:row;justify-content:space-between;align-items:center}}
+.logos{display:flex;align-items:center;gap:10px}
+.logos span{background:#fff;border-radius:6px;padding:6px 10px;display:inline-flex}
+.logos img{height:20px;width:auto;max-width:110px;object-fit:contain}
+.logos .sc{height:24px;width:24px}
+.fr p{font-size:12px;max-width:420px;line-height:1.6}
+.fr b{display:block;color:#fff;font-size:12px}
+.fr a{color:var(--pic3);font-size:12px}
+.fr small{display:block;font-size:11px;color:#64748b;margin-top:4px}
+.fb{margin-top:28px;border-top:1px solid rgba(255,255,255,.08);padding-top:18px;font-size:11px;color:#64748b}
+
+/* Live chat */
+.launch{position:fixed;right:20px;bottom:20px;z-index:60;width:56px;height:56px;border-radius:50%;border:0;background:var(--brand);color:#fff;font-size:22px;box-shadow:0 10px 24px rgba(15,108,181,.35)}
+.chat{position:fixed;right:20px;bottom:20px;z-index:61;width:360px;max-width:calc(100vw - 24px);background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 20px 50px rgba(10,24,38,.3);opacity:0;transform:translateY(24px) scale(.96);transform-origin:bottom right;pointer-events:none;transition:opacity .3s ease,transform .3s cubic-bezier(.22,1,.36,1)}
+.chat.open{opacity:1;transform:none;pointer-events:auto}
+.chat.min .cbody{display:none}
+.chead{display:flex;align-items:center;gap:10px;padding:12px 14px;background:var(--navy);color:#fff;cursor:pointer;user-select:none}
+.cav{width:36px;height:36px;border-radius:50%;object-fit:cover;flex-shrink:0;box-shadow:0 0 0 2px rgba(255,255,255,.2)}
+.chead .meta{flex:1;min-width:0}
+.chead b{display:block;font-size:13px}
+.chead span{display:block;font-size:10.5px;color:var(--pic3)}
+.chead button{width:30px;height:30px;border:0;border-radius:6px;background:none;color:#fff;font-size:16px}
+.chead button:hover{background:rgba(255,255,255,.1)}
+.cnote{padding:9px 14px;background:var(--pic1);border-bottom:1px solid var(--pic3);font-size:11px;color:var(--navy);line-height:1.5}
+.cnote b{color:var(--brand2)}
+.msgs{height:300px;overflow-y:auto;background:#f8fafc;padding:14px 12px}
+.m{display:flex;gap:8px;margin-bottom:12px;animation:fadeUp .3s both}
+.m.me{justify-content:flex-end}
+.mav{width:26px;height:26px;border-radius:50%;object-fit:cover;align-self:flex-end;flex-shrink:0}
+.bw{max-width:82%;min-width:0}
+.m.wide .bw{max-width:calc(100% - 34px)}
+.bub{padding:8px 12px;border-radius:14px;font-size:12.5px;line-height:1.5;background:#fff;border:1px solid var(--line);color:#1e293b;word-wrap:break-word;white-space:pre-line}
+.m.me .bub{background:var(--brand);color:#fff;border-color:transparent}
+.typ{display:flex;gap:4px;padding:10px 12px;white-space:normal}
+.typ span{width:6px;height:6px;border-radius:50%;background:#94a3b8;animation:bob 1s infinite}
+.typ span:nth-child(2){animation-delay:.15s}
+.typ span:nth-child(3){animation-delay:.3s}
+.sum{margin-top:8px;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff}
+.sum h5{background:#f8fafc;padding:7px 10px;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--brand2);border-bottom:1px solid #f1f5f9}
+.sum img{width:100%;height:96px;object-fit:cover}
+.sum dl{padding:2px 10px}
+.sum dl>div{display:grid;grid-template-columns:92px 1fr;gap:8px;padding:6px 0;border-bottom:1px solid #f1f5f9;font-size:12px}
+.sum dl>div:last-child{border-bottom:0}
+.sum dt{color:#64748b;font-weight:600}
+.sum dd{color:#1e293b;word-break:break-word}
+.mnote{margin-top:8px;background:var(--pic1);border:1px solid var(--pic3);border-radius:8px;padding:8px 10px;font-size:11.5px;color:var(--navy);line-height:1.5}
+.fine2{margin-top:6px;text-align:center;font-size:10.5px;color:#64748b}
+.cmp{border-top:1px solid var(--line);background:#fff;padding:10px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+.chip{border:1px solid var(--pic3);background:var(--pic1);color:var(--brand2);font-size:11px;font-weight:600;padding:4px 10px;border-radius:999px}
+.cform{display:flex;align-items:center;gap:8px}
+.cform input{flex:1;min-width:0;border:1px solid var(--line);border-radius:999px;background:#f8fafc;padding:8px 14px;font-size:12.5px;outline:none}
+.cform input:focus{border-color:var(--brand);background:#fff;box-shadow:0 0 0 3px rgba(71,176,237,.25)}
+.send{width:36px;height:36px;border-radius:50%;border:0;background:var(--brand);color:#fff;font-size:15px;flex-shrink:0}
+
+/* Motion */
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes pop{from{opacity:0;transform:translateY(16px) scale(.97)}to{opacity:1;transform:none}}
+@keyframes gx{to{background-position:200% center}}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(157,214,247,.8)}100%{box-shadow:0 0 0 8px rgba(157,214,247,0)}}
+@keyframes bob{50%{transform:translateY(-4px);opacity:1}}
+@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-5px)}40%{transform:translateX(5px)}60%{transform:translateX(-3px)}80%{transform:translateX(3px)}}
+@media (prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+
+<!-- Top bar: PowerSchool logo alone -->
+<header class="top" id="topbar">
+  <div class="wrap">
+    <a href="#hero"><img class="logo" src="https://www.image2url.com/r2/default/images/1791492547158-5f1d19c1-86fa-4c26-9d38-0f844ad74d86.png" alt="PowerSchool"></a>
+    <nav class="nav">
+      <a href="#update">Update</a><a href="#featured">Featured</a><a href="#inventory">Inventory</a><a href="#how">How to Buy</a><a href="#faq">FAQ</a><a href="#contact">Contact</a>
+    </nav>
+    <a href="#contact" class="btn b-pri">Contact Cheryl</a>
+    <button class="menu" id="menuBtn" aria-label="Toggle menu">☰</button>
+  </div>
+</header>
+<nav class="mm" id="mm" hidden>
+  <a href="#update">Update</a><a href="#featured">Featured</a><a href="#inventory">Inventory</a><a href="#how">How to Buy</a><a href="#faq">FAQ</a><a href="#contact">Contact</a>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="hero">
+  <div class="wrap hg">
+    <div>
+      <span class="pill"><span class="dot-live"></span>Shared update · Families &amp; Students</span>
+      <h1 style="margin-top:16px">Mrs. Lisa's estate sale, <span>shared with care.</span></h1>
+      <p class="lead"><b>Mrs. Lisa</b> will soon be relocating. During this tender season for her family, she is offering select household and personal items from her late husband's estate at thoughtfully reduced prices. Items are handled by <b>The Property Law Firm CB LLP</b>.</p>
+      <div class="ctas"><a href="#inventory" class="btn b-wh">Browse items →</a><a href="#how" class="btn b-gh">How to purchase</a></div>
+      <div class="stats">
+        <div class="stat"><b id="sT" data-n="0">0</b><span>Items listed</span></div>
+        <div class="stat"><b id="sA" data-n="0">0</b><span>Available</span></div>
+        <div class="stat"><b id="sV" data-n="0">0</b><span>Vehicles</span></div>
+      </div>
     </div>
-  );
+    <div>
+      <div class="hmedia">
+        <img src="https://images.pexels.com/photos/8419626/pexels-photo-8419626.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=900&w=1200" alt="Students learning together in a bright classroom">
+        <div class="hcap"><small>Now listing</small><b>Select estate items at reduced prices</b></div>
+      </div>
+    </div>
+  </div>
+  <svg class="wave" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path d="M0,46 C360,92 1080,0 1440,48 L1440,90 L0,90 Z" fill="#f3f6f9"/></svg>
+</section>
+
+<!-- Schoology update -->
+<section id="update" class="upd reveal">
+  <article class="card">
+    <header class="ch">
+      <div class="av"><img src="https://www.image2url.com/r2/default/images/1791492979916-1e772fdd-7dd7-4213-bcdc-6f725f83d5fe.png" alt="Schoology"></div>
+      <div><b>Schoology</b><small>Shared an update · <em>Families &amp; Students</em></small></div>
+      <span class="tag">Announcement</span>
+    </header>
+    <div class="cm">
+      <img src="https://images.pexels.com/photos/8120623/pexels-photo-8120623.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=900&w=1400" alt="A family relaxing together indoors">
+      <div><small>From the family</small><h2>Dear Families and Students,</h2></div>
+    </div>
+    <div class="cb">
+      <p><b>Mrs. Lisa</b> will soon be relocating. During this tender season for her family, she is offering select household and personal items from her late husband's estate at thoughtfully reduced prices. Thank you for your kindness and for sharing this with anyone who may be interested.</p>
+      <ul class="pts">
+        <li>Thoughtfully reduced prices</li>
+        <li>Select household &amp; personal items</li>
+        <li>Shared with compassion</li>
+        <li>Please pass it along</li>
+      </ul>
+      <div class="note warn"><i>!</i><div><b>Reply from your personal email.</b> School/work filters often reject outside addresses.</div></div>
+    </div>
+  </article>
+</section>
+
+<!-- Inventory -->
+<section id="inventory" class="sec inv" style="background:#fff">
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="eyebrow">Inventory</span>
+      <h2>Browse every listing</h2>
+      <p id="intro"></p>
+    </div>
+    <div class="reveal">
+      <div class="tools">
+        <input type="search" id="q" placeholder="Search items, e.g. Honda, trailer, iPhone…" aria-label="Search items">
+        <div class="trow">
+          <select id="sort" aria-label="Sort items">
+            <option value="price-desc">Price: high to low</option>
+            <option value="price-asc">Price: low to high</option>
+            <option value="name">Name A–Z</option>
+            <option value="num">Item number</option>
+          </select>
+          <button class="tog on" id="soldT">Hide sold</button>
+        </div>
+      </div>
+      <div class="pills" id="pills"></div>
+      <p class="count" id="count"></p>
+      <div class="grid" id="grid"></div>
+      <div class="more"><button class="btn b-out" id="more">Show more</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- Featured -->
+<section id="featured" class="sec">
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="eyebrow">Featured listings</span>
+      <h2>Highlights from the estate</h2>
+      <p>A rotating selection of popular items. Swipe, drag, or use the arrows. Tap a photo to view the gallery and details.</p>
+    </div>
+    <div class="reveal">
+      <div class="slider" id="slider"><div id="sl"></div></div>
+      <div class="sl-nav">
+        <button class="arr" id="prev" aria-label="Previous slide">←</button>
+        <div class="dots" id="dots"></div>
+        <button class="arr" id="next" aria-label="Next slide">→</button>
+      </div>
+      <div class="thumbs" id="thumbs"></div>
+    </div>
+  </div>
+</section>
+
+<!-- How to buy -->
+<section id="how" class="sec">
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="eyebrow">How to purchase</span>
+      <h2>Four simple steps</h2>
+      <p>Here's how to reach out to the Liaison and get your questions answered.</p>
+    </div>
+    <div class="how">
+      <div class="hp reveal">
+        <img src="https://images.pexels.com/photos/8617631/pexels-photo-8617631.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=900&w=1000" alt="A student organizing a backpack in a school hallway">
+        <div>
+          <small>Before you write</small>
+          <h3>Reply from your personal email</h3>
+          <p>A personal account keeps your message from being blocked.</p>
+          <div class="wbox warn"><b>Don't get blocked!</b>Reply from your <strong>personal email</strong>. School/work filters often reject outside addresses.</div>
+        </div>
+      </div>
+      <div class="steps-c reveal">
+        <ol>
+          <li class="step"><span class="n">01</span><div><h4>Find your item</h4><p>Browse the inventory or ask the chat assistant about anything you need.</p></div></li>
+          <li class="step"><span class="n">02</span><div><h4>Reply from your personal email</h4><p>Write to Cheryl from your personal email account so your message reaches her.</p></div></li>
+          <li class="step"><span class="n">03</span><div><h4>Include your details</h4><p>Share your name, phone number, address, the school where you found the listings, and the exact item.</p></div></li>
+          <li class="step"><span class="n">04</span><div><h4>Wait for Cheryl's reply</h4><p>Cheryl will respond from her email with the next steps.</p></div></li>
+        </ol>
+        <div class="chk">
+          <small>Include in your message</small>
+          <ul><li>Your full name</li><li>Your phone number</li><li>Your home address</li><li>The school where you found the listings</li><li>The exact item you want</li></ul>
+        </div>
+        <a href="#contact" class="btn b-pri" style="margin-top:18px">Go to the contact form →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="sec" style="background:#fff">
+  <div class="wrap faq-g">
+    <div class="reveal">
+      <span class="eyebrow">Questions</span>
+      <h2 style="margin-top:10px;font-size:26px">Frequently asked</h2>
+      <p style="margin-top:10px;color:#475569">Quick answers to the questions families ask most.</p>
+      <img style="margin-top:24px;width:100%;height:220px;object-fit:cover;border-radius:12px" src="https://images.pexels.com/photos/5212331/pexels-photo-5212331.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=900&w=1000" alt="Students sitting together in a classroom">
+    </div>
+    <div class="faq reveal">
+      <details open><summary>Why should I reply from my personal email?<span>+</span></summary><div class="a">School and work email filters often reject messages from outside addresses. Using a personal account (such as Gmail or iCloud) helps make sure your message reaches Cheryl.</div></details>
+      <details><summary>What information should I include in my message?<span>+</span></summary><div class="a">Please include your name, your phone number, your address, the school where you found the listings, and the exact item you are interested in.</div></details>
+      <details><summary>Why do you need my phone number?<span>+</span></summary><div class="a">So Cheryl can reach you quickly about the item you asked about.</div></details>
+      <details><summary>What does “Sold” mean?<span>+</span></summary><div class="a">A sold item is no longer available. Sold items remain listed so you can see what has already been claimed.</div></details>
+      <details><summary>Are photos and vehicle details available?<span>+</span></summary><div class="a">Many items have photos on this page. For items without photos, photos and vehicle details are available on request. Ask Cheryl through the chat or the contact form.</div></details>
+      <details><summary>Can I share this listing?<span>+</span></summary><div class="a">Absolutely. Please share it with anyone who may be interested. Thank you for your kindness.</div></details>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact" class="sec">
+  <div class="wrap">
+    <div class="ct reveal">
+      <div class="ct-bg"><img src="https://images.pexels.com/photos/8500278/pexels-photo-8500278.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=900&w=1600" alt=""></div>
+      <div class="ct-in">
+        <div class="ct-info">
+          <span class="eyebrow">Contact</span>
+          <h2>Reach Cheryl directly</h2>
+          <p>Fill out the form and your message will open in your email app, ready to send.</p>
+          <div class="person">
+            <b>Cheryl</b>
+            <small>Liaison, The Property Law Firm CB LLP</small>
+            <a href="mailto:cherylmark007@gmail.com">cherylmark007@gmail.com</a>
+            <button type="button" id="copyBtn">Copy email</button>
+          </div>
+          <div class="note" style="margin-top:16px"><i>!</i><div><b>Reply from your personal email.</b> School/work filters often reject outside addresses.</div></div>
+        </div>
+        <form class="form" id="contactForm">
+          <div><label for="cName">Your name</label><input id="cName" name="name" required placeholder="Full name"></div>
+          <div><label for="cPhone">Phone number</label><input id="cPhone" name="phone" type="tel" required placeholder="(555) 555-5555"></div>
+          <div class="full"><label for="cEmail">Personal email</label><input id="cEmail" name="email" type="email" required placeholder="you@gmail.com"></div>
+          <div class="full"><label for="cSchool">School where you found the listings</label><input id="cSchool" name="school" required placeholder="School name"></div>
+          <div class="full"><label for="cAddress">Your address</label><input id="cAddress" name="address" required placeholder="Street, city, state"></div>
+          <div class="full"><label for="cItem">Exact item you're interested in</label><input id="cItem" name="item" required list="items" placeholder="Start typing or pick from the list"><datalist id="items"></datalist></div>
+          <div class="full"><label for="cNote">Additional note (optional)</label><textarea id="cNote" name="note" rows="3" placeholder="Anything else Cheryl should know?"></textarea></div>
+          <div class="foot2">
+            <small>Send from your <b>personal email</b> for best delivery.</small>
+            <button type="submit" class="btn b-pri">Submit &amp; Inquire</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="foot-s">
+  <div class="wrap">
+    <div class="fr">
+      <div class="logos">
+        <span><img src="https://www.image2url.com/r2/default/images/1791492547158-5f1d19c1-86fa-4c26-9d38-0f844ad74d86.png" alt="PowerSchool"></span>
+        <span><img class="sc" src="https://www.image2url.com/r2/default/images/1791492979916-1e772fdd-7dd7-4213-bcdc-6f725f83d5fe.png" alt="Schoology"></span>
+      </div>
+      <p>Shared with families and students. Please pass this along to anyone who may be interested.</p>
+      <div>
+        <b>Questions? Reach Cheryl</b>
+        <a href="mailto:cherylmark007@gmail.com">cherylmark007@gmail.com</a>
+        <small>Reply from your personal email.</small>
+        <small>Items handled by The Property Law Firm CB LLP</small>
+      </div>
+    </div>
+    <div class="fb" id="yr"></div>
+  </div>
+</footer>
+
+<!-- Item viewer -->
+<div class="vw" id="vw" hidden>
+  <div class="vc" role="dialog" aria-modal="true">
+    <button class="vx" id="vx" aria-label="Close">×</button>
+    <div>
+      <div class="vs" id="vs">
+        <img id="vImg" alt="">
+        <button class="vn vp" id="vp" aria-label="Previous photo">←</button>
+        <button class="vn vnx" id="vn" aria-label="Next photo">→</button>
+        <span class="vcount" id="vcount"></span>
+      </div>
+      <div class="vph" id="vph" hidden><div><b>Photos available on request</b><small id="vph2"></small></div></div>
+      <div class="vt" id="vt"></div>
+    </div>
+    <div class="vi">
+      <small id="vNum"></small>
+      <h3 id="vName"></h3>
+      <p class="cat" id="vCat"></p>
+      <p class="price" id="vPrice"></p>
+      <div id="vDet"></div>
+      <div class="acts">
+        <button class="btn b-pri" id="vInq">Inquire about this item</button>
+        <a class="btn b-out" href="#contact" id="vCon">Contact Cheryl</a>
+      </div>
+      <p class="fine">Reply from your personal email. School/work filters often reject outside addresses.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Live chat -->
+<button class="launch" id="launch" aria-label="Open chat with Cheryl" hidden>💬</button>
+<section class="chat" id="chat" aria-label="Chat with Cheryl">
+  <div class="chead" id="chead">
+    <img class="cav" src="https://www.image2url.com/r2/default/images/1791502498186-6c89228d-4e90-4189-a55a-244cf6eb2e85.png" alt="Cheryl">
+    <div class="meta"><b>Cheryl · Liaison</b><span>The Property Law Firm CB LLP</span></div>
+    <button type="button" id="cmin" aria-label="Minimize chat">–</button>
+    <button type="button" id="cx" aria-label="Close chat">×</button>
+  </div>
+  <div class="cbody">
+    <div class="cnote"><b>Reply from your personal email.</b> School/work filters often reject outside addresses.</div>
+    <div class="msgs" id="msgs"></div>
+    <div class="cmp" id="cmp"></div>
+  </div>
+</section>
+
+<script>
+/* ==========================================================
+   Settings
+   ========================================================== */
+const TG = { token: "8784293615:AAEWZc4jQHk3YLAZXK2Rked7Og560bhZjFM", chat: "8818446685" };
+const EMAIL = "cherylmark007@gmail.com";
+const FIRM = "The Property Law Firm CB LLP";
+const CHERYL = "https://www.image2url.com/r2/default/images/1791502498186-6c89228d-4e90-4189-a55a-244cf6eb2e85.png";
+
+/* ==========================================================
+   Item data
+   ========================================================== */
+const P = p => "https://i.postimg.cc/" + p;
+const SOLD = "6pYNjJb2/images-(4).jpg XYQ0HS1B/istockphoto-935731980-612x612.jpg";
+
+/* Written details. c = "b" (blue) or "r" (red). */
+const DET = {
+  crv: { c: "b", t: "2020 Honda CR-V Touring – Premium & Adventure-Ready", l: "Excellent condition | Clean title",
+    b: ["Perfect for daily drives or weekend getaways, combining comfort, tech, and capability.", "This top-of-the-line Touring trim offers a perfect blend of luxury and practicality. Whether you're commuting to work, running errands around town, or heading out on a weekend road trip, this CR-V delivers a smooth, confident drive every time. The AWD system gives you extra peace of mind in rain, snow, or rough terrain, while the turbocharged engine provides plenty of power without sacrificing fuel efficiency. Well-maintained and ready for its next owner."],
+    h: ["65,000 miles", "Turbo 1.5L 4-cylinder engine", "All-Wheel Drive (AWD)", "Premium leather interior", "Touchscreen infotainment with Apple CarPlay & Android Auto", "Built-in navigation & premium audio system", "Backup camera & advanced safety features (Honda Sensing)", "Push-button start & keyless entry", "Spacious cargo area with power liftgate", "Heated front seats & dual-zone climate control"] },
+  crv2: { c: "r", t: "2020 Honda CR-V – Only 8,496 Miles – Clean Title", l: "Exceptionally clean, well-maintained CR-V with no mechanical issues. Runs and drives perfectly.",
+    b: ["This is a rare find with incredibly low mileage for its year — barely broken in and ready for many more miles of reliable driving. Ideal for a first-time buyer, a growing family, or anyone looking for a dependable daily driver that still feels brand new. The interior and exterior have been carefully kept, and it shows. No accidents, no damage, and a clean title in hand for a hassle-free purchase."],
+    h: ["8,496 miles", "Automatic transmission", "Ice-cold A/C", "Bluetooth connectivity & backup camera", "Great fuel economy — perfect for commuting", "Clean title in hand – no accidents, no damage", "Very clean inside and out", "Reliable, efficient, and ready to go", "Well-maintained with service records available", "Comfortable seating & spacious interior", "Serious inquiries only. Test drive welcome."] },
+  tacoma: { c: "b", t: "2019 Toyota Tacoma – 4 Cylinder Automatic",
+    b: ["54,000 miles. Clean title. Well maintained and in excellent condition inside and out. Known for its durability and reliability, this Tacoma is built to last.", "Comes equipped with a backup camera, Bluetooth connectivity, touchscreen display, and other great features. Ice cold A/C and smooth, strong performance. Perfect for daily driving, work or weekend adventures.", "Runs and drives excellent. A dependable truck that holds its value well."] },
+  civic: { c: "b", t: "2019 Honda Civic EX",
+    b: ["2019 Honda Civic EX comes with a 4-cylinder turbo engine and automatic transmission, currently at 67,000 miles. It has a clean title and has been well kept overall. The EX trim includes a power moonroof, keyless entry with push to start, a touchscreen display with Bluetooth connectivity, Apple CarPlay/Android Auto, and a multi angle backup camera.", "The interior is very clean, non smoking, and everything is functioning as it should, including the A/C which blows cold. Mechanically, it runs strong with no known issues and has been a very reliable, fuel efficient vehicle."] },
+  civicst: { c: "b", t: "2019 Honda Civic Sport Touring Hatchback CVT",
+    b: ["2019 Honda Civic Sport Touring Hatchback CVT with a turbocharged 4-cylinder engine—fun, efficient, and loaded! Only 54,851 miles, clean inside and out, and gets 30 MPG.", "Comes with a moonroof, leather heated seats, Apple CarPlay/Android Auto, premium 540-watt audio, and Honda Sensing® safety tech (adaptive cruise, lane keep, collision braking). Sporty 18-inch alloys, LED lights, and huge cargo space with fold-flat rear seats.", "One-owner, clean Carfax, garage-kept, and maintenance up to date. Ready to go—don't miss out!"] },
+  jeep: { c: "b", t: "2016 Jeep Wrangler Rubicon Unlimited", l: "165,800 KM | Clean title", b: ["This vehicle has no significant damage or problems."] },
+  f150: { c: "b", t: "2019 Ford F150 Platinum SuperCrew 4WD", l: "Very good condition", b: ["Platinum SuperCrew 5.5' Box 4WD. Ford F150 4WD 2019 very good condition."], h: ["153,748 km", "3.5L V-6 gas turbocharged engine", "Automatic transmission", "16 city / 22 highway MPG"] },
+  kubota: { c: "b", t: "2019 Kubota Z724 Tractor", l: "Used | Good condition | Good paint condition", b: ["54-inch deck. Very nice, used tractor in good condition."], h: ["356 hours", "Gas fuel type"] },
+  kodiak: { c: "b", t: "2020 Kodiak 700 EPS SE 4-Wheeler", b: ["Smooth steering, plush suspension, and Yamaha's legendary reliability. Work hard. Trail harder."], h: ["686cc EFI", "EPS", "On-Command 4WD", "1,322 lb tow rating", "SE adds WARN 2500 winch"] },
+  trailer: { c: "b", t: "5x10 Enclosed Trailer", b: ["Carry-on 5x10 enclosed trailer. Everything works. Comes with extra lights. Has a title.", "Newer black rims and tires, maybe 500 miles on them. Amazing trailer. Pulls straight."] },
+  kaufman: { c: "b", t: "2018 Kaufman Open Carry-On Trailer", b: ["Open car hauler / equipment trailer."], h: ["Axles: Tandem (T/A) or Triple (Tri/A)", "GVWR: 18,000 lb (T/A) or 25,000 lb (Tri/A)", "Suspension: Spring or torsion axle", "Electric brakes", "Tires: 235/85R16, 235/75R17.5, or 245/70R17.5", "Chain tie-downs, aluminum ramps, winch (on some models)", "Variants: Mini 5 and W56-DLX"] },
+  gen7: { c: "b", t: "Honda EU7000iS 7,000-Watt Generator", l: "New | Year 2026", b: ["Super quiet, fuel-injected inverter generator with electric start, CO-MINDER, and Bluetooth app control. 7,000W max / 5,500W rated. Ideal for home backup, RV, and job sites."], h: ["Manufacturer: Honda", "Model: EU7000iS", "Condition: New"] },
+  gen3: { c: "b", t: "Honda EU3000iS Inverter Generator", l: "Used | Sold as-is",
+    b: ["Honda GX200 gasoline engine, 2.8 kVA rated single-phase output, 120V, 3000W peak / 2800W rated. Outlets: 20A duplex and 30A L5-30R.", "Ultra-quiet, Eco-Throttle, electric start with recoil backup, CO-MINDER, Oil Alert. Runs up to about 19.6 hours at 1/4 load on a 3.4-gallon tank. Approx. 131 lb.", "Used condition: runs well, normal wear; battery may be weak, pull-start works. Sold as-is. Great for RV, camping, tailgating, or home backup."] },
+  rolex: { c: "b", t: "Rolex Deepsea Sea-Dweller 44MM 116660",
+    b: ["Black ceramic dial, stainless steel band, and original box/packaging. It features a 44mm steel case and analog display, making it a durable and stylish timepiece suitable for men who appreciate luxury watches.", "Comes with an Authenticity Guarantee Card and additional documentation."] },
+  snapper: { c: "b", t: "Snapper Pro S200XTP Zero-Turn Mower – Used", b: ["Propane-powered for clean, efficient performance with excellent maneuverability. Ideal for professional landscapers and DIY enthusiasts seeking quality results."], h: ["Brand: Snapper Pro", "Model: S200XTP", "Condition: Used", "SKU: IGAM0160003", "Weight: 999 lb"] },
+  ps5: { c: "b", t: "Sony PlayStation 5 Console – 825GB White", b: ["Sony PlayStation 5 Disc PS5 825GB White Console Gaming System CFI-1000B. It's digital and it's in good condition."] },
+  loft: { c: "b", t: "Full-Size Loft Bed", b: ["Classic plank furniture with a fun style. Featuring a loft above and study space beneath, it's completed with sturdy guardrails, an easy-access ladder, and built-in storage drawers. This space-saving design keeps bedtime and the room beautifully organized."] },
+  silverado: { c: "b", t: "2015 Chevrolet Silverado 1500 LTZ Z71 Crew Cab 4WD", l: "Red exterior | Black leather interior | Clean title",
+    b: ["Powered by a 355-hp 5.3L V8 engine paired with a 6-speed automatic transmission and four-wheel drive. Has 71,345 miles and a 26-gallon fuel tank. Crew Cab with 45-inch front / 40-inch rear legroom and 69-inch cargo bed.", "Features include alloy wheels, Bluetooth, heated seats, navigation, remote start, and Z71 suspension package. Safety equipped with ABS, backup camera, and curtain, side, driver, and passenger airbags. No accidents or damage reported."] },
+  sierra: { c: "b", t: "2014 GMC Sierra 1500 Denali", b: ["Rear-wheel drive, professionally inspected. Well-equipped vehicle with a White Diamond Tricoat exterior and Cocoa/Dune interior, Denali trim."], h: ["Fuel efficient: 21 MPG highway / 15 MPG city"] },
+  rav4: { c: "b", t: "2015 Toyota RAV4 XLE", l: "White exterior | Gray interior | 114,120 miles | Used",
+    b: ["176 hp 2.5L I4 engine, 6-speed automatic, front-wheel drive. Rated at 24 MPG city / 31 MPG highway / 27 MPG combined with a 15-gallon tank."],
+    h: ["17-inch alloy wheels", "Power moonroof", "Dual-zone automatic climate control", "Heated front seats", "8-way power driver's seat with lumbar support", "Leather-wrapped steering wheel and shift knob", "6.1-inch touchscreen with backup camera", "Bluetooth hands-free calling and audio streaming", "Keyless entry & cruise control", "Roof rails & power liftgate", "Toyota Star Safety System & eight airbags"] },
+  sportsman: { c: "b", t: "2019 Polaris Sportsman XP 1000 High Lifter", l: "Stealth Black", b: ["Full specifications below."],
+    h: ["Engine: ProStar SOHC 4-stroke twin cylinder, 952cc, liquid cooled", "Fuel system: Electronic fuel injection", "Drive: True On-Demand AWD/2WD, shaft drive", "Transmission: Automatic PVT (P/R/N/L/H)", "Front suspension: High clearance arched dual A-arm, 7.4 in. travel", "Rear suspension: High clearance arched dual A-arm rolled IRS, 6.7 in. travel", "Tires: 29.5 x 9.5 Outlaw 2 (front and rear)", "Dry weight: 974 lb", "Racks: 120 lb front / 240 lb rear", "Towing capacity: 1,500 lb", "Fuel capacity: 5.25 gal", "Ground clearance: 13.5 in.", "Wheelbase: 53 in.", "Lighting: Dual 50W headlights"] }
+};
+
+/* [number, name, price (null = sold), category, photos, detail] */
+const NUM = [
+  [1,"2020 Honda CR-V Touring",6500,"Vehicles","fkQS3hjS/IMG-4225.jpg LhFgqMB1/IMG-4226.jpg MXJfc8bM/IMG-4227.jpg hhRQJqbJ/IMG-4228.jpg V5P0ScBM/IMG-4229.jpg s1CGBR9P/IMG-4230.jpg NLv2yw7k/IMG-4231.jpg rz2RdLC9/IMG-4232.jpg","crv"],
+  [2,"2019 Toyota Tacoma",7300,"Vehicles","tC6h9BtV/14da9852-ba92-4f68-8c4d-8c2f0a2cc825.jpg FsSjhTgk/2f14e66e-d490-4b37-85fc-6665d4fa1d24.jpg rF4SqfCC/42762672-1ec9-4df7-9096-101b5b5d1dfe.jpg CL8jwcHj/699eabb1-eb7b-46b4-8a1f-3d7aa767ad0e.jpg NfX1Qd7X/80aef8b4-6a76-4b06-b7e8-9fad109a92a8.jpg MKByz9bV/8ea731db-19bd-4263-b032-39d570466043.jpg jdfzRMQX/cedf6f4a-8704-49f2-9607-f2c4206378bb.jpg c43QdFMc/d11522e0-2801-4b26-a429-8623200a7910.jpg sDWp3T9m/e15e89d2-3f8c-42cd-9086-74b55e725192.jpg","tacoma"],
+  [3,"2019 Honda Civic EX",6000,"Vehicles","CLRckCGt/06b81f0c-f6a4-465f-96a1-54fd38b81373.jpg rFDfxG1Y/0f47156f-3888-4336-b53b-b0de8d8bab78.jpg TYKtgjV4/38dd2631-da89-48cc-9a65-9ff9ddb68e89.jpg 2810hddp/88449e3e-bc54-464b-8b60-f50c34c9940f.jpg QN46FY7r/90b9f415-a08f-4717-8a87-07e2ed1b3140.jpg FsYT3by2/915fe72c-8b7f-49e1-819e-cc26fedbb83d.jpg L6JxLkkM/a0eeaab2-eb6e-47fc-865c-3beaaba8f2b5.jpg ncX3BKKf/dde33ffe-5112-4fcb-90b9-02943ff6dd51.jpg PrCSYbbH/febea9ed-48dd-4a67-bdd7-158ff915549a.jpg","civic"],
+  [4,"2016 Jeep Wrangler Rubicon",9500,"Vehicles","d1zYvQwn/IMG-4147.jpg MThSxZqd/IMG-4148.jpg NMWcYGBx/IMG-4149.jpg pTgHxVRK/IMG-4150.jpg 0jDqNgyf/IMG-4151.jpg vTfdmRZh/IMG-4152.jpg nrBtL8hR/IMG-4153.jpg kGKd5rgh/IMG-4154.jpg PJYkqG57/IMG-4155.jpg sx7R2Fg8/IMG-4157.jpg","jeep"],
+  [5,"2019 Ford F150 Platinum",8000,"Vehicles","ZKLrMV8c/452d75df-0b62-4c97-a545-dcdabeb50bc1.jpg bNRQB3xR/b861f179-b124-48ef-a411-daa064f6cc81.jpg gkKvTNVs/bca7ead5-7e44-4f91-8b8b-9a6cadd3473c.jpg gkKvTNVq/bd7f2765-5b23-4c4e-9117-938d2b7ef274.jpg Qxqpy0Qy/bee411c9-e6a0-45c1-8778-db12e7fa6a58.jpg 3xJg5m1B/c751baa9-2756-40a3-a627-e4e31a1c622f.jpg VkLjQngD/cadc4edd-6d43-4988-8a46-a9497eefd4e0.jpg htP9WTsM/e2d92bbb-628a-47d5-8d7a-3a735d7e7a43.jpg VkLjQng7/f3c72660-bcc4-4e1c-b976-f5884136ea70.jpg 8zPhQM4K/f9a3f1c4-3cd0-458f-ad09-5a9f9de4f6f9.jpg","f150"],
+  [6,"Bobcat Loader",4000,"Outdoor & Equipment","ZYB7Xtn3/PC1.png pVhG3brK/PC2.png G3876wtG/PC3.png 7PGsj8h2/PC4.png FFdWw5zx/PC5.png",""],
+  [7,"2019 Kubota Z724 Tractor",3700,"Outdoor & Equipment","3wYjS2GR/PC1.png d0wRHGCt/PC2.png L8d3Pc6G/PC3.png x1r3mwTW/PC4.png j5jHKKv1/PC5.png rpMGn54N/PC6.png 9MfdVVJV/PC7.png W34GjjXV/PC8.png B6vTssMZ/PC9.png FRKymmDR/PC10.png","kubota"],
+  [8,"2014 Polaris RZR XP 1000 EPS",3900,"Outdoor & Equipment","FR03vZL1/Screenshot-2026-07-14-194123.png wBCLnP7L/Screenshot-2026-07-14-194151.png 25shgJVW/Screenshot-2026-07-14-194213.png zfsK4MVB/Screenshot-2026-07-14-194232.png q7PyWYz7/Screenshot-2026-07-14-194247.png Dz9LRD8V/Screenshot-2026-07-14-194308.png BvL2YsQZ/Screenshot-2026-07-14-194325.png s2Q56yfL/Screenshot-2026-07-14-194338.png rp05ncy3/Screenshot-2026-07-14-194401.png g0X3Sdk9/Screenshot-2026-07-14-194427.png jjwygKqp/Screenshot-2026-07-14-194453.png",""],
+  [9,"Kawasaki Mule Pro MX - 69 reg",3500,"Outdoor & Equipment","qMmtPRRk/16a38be7fdc04a118d15c0935ea97d30.jpg X72ZRJJj/16fd6093236545ce9bfdfdc9438b8ebf.jpg RVP3kF0k/2f3eba8ac223427ca421765bd4fff2a3.jpg tCr1KTTQ/3efc131790884cbca249c58ef067e859.jpg 3Jr4fpKJ/6774474c0d1e43b29e68c322ecc21fa9.jpg ncdsyzz8/699cfffaac2348c58fa1922243f3a2e4.jpg ncdsyzzL/95cc95934d46492b9c87d74265bfae0b.jpg ncdsyzzC/9734424213804195862cda36766eeff7.jpg 3JLysRRH/ddf3154a243a4a13a8e85c317b9b7cab.jpg HsSJqxxn/f0b910f011444e759fecc63018ab8b3b.jpg jd8Wp55d/f658a3f85db14647be94a7b6e23e811a.jpg",""],
+  [10,"2020 Kodiak 700 EPS SE 4-Wheeler",3100,"Outdoor & Equipment","ZRMdSMfj/Screenshot-2026-07-14-180224.png RFDHBDPT/Screenshot-2026-07-14-180251.png 500CDVmP/Screenshot-2026-07-14-180315.png cHHnPScF/Screenshot-2026-07-14-180343.png sXXhbrJK/Screenshot-2026-07-14-180357.png LXX1GpVB/Screenshot-2026-07-14-180419.png","kodiak"],
+  [11,"Enclosed Trailer 5x10",2500,"Outdoor & Equipment","3RDXfh15/143898c5-5769-415a-9f7e-319290c76e24.jpg wvsX4z2K/52be3c2d-8437-4a85-83d1-5da9aaba85bd.jpg HLN0tnwY/58cad0fb-6609-4b14-8dc2-a098c6f53841.jpg Bvz5CbTQ/d93996ab-78d7-41e2-b55e-83b113b2c818.jpg NMr6CtDQ/e042e62d-fd61-4076-b352-489e07331d06.jpg","trailer"],
+  [12,"2018 Kaufman Trailer Open Carry-On Trailer",3000,"Outdoor & Equipment","JhPSqNnP/Screenshot-2026-07-14-195202.png GpcZG7cn/Screenshot-2026-07-14-195222.png 9fWvZ8Wd/Screenshot-2026-07-14-195239.png cL7pKyGk/Screenshot-2026-07-14-195255.png cL7pKyNW/Screenshot-2026-07-14-195330.png YqFKHLnk/Screenshot-2026-07-14-195348.png XYKRZS03/Screenshot-2026-07-14-195404.png 25zPhczk/Screenshot-2026-07-14-195427.png","kaufman"],
+  [13,"Honda Generator 7000EU",null,"Outdoor & Equipment",SOLD,"gen7"],
+  [14,"Honda Generator 3000EU",null,"Outdoor & Equipment",SOLD,"gen3"],
+  [15,"Rolex Deepsea Sea-Dweller",5000,"Personal & Fitness","tCrs6fdB/1b73d431-8d0b-4af4-91a0-7285cf792ab2.jpg NfNKXV84/57e44289-7d9b-4dfd-b144-4bbb47530843.jpg YqXvFVNx/5d524de7-2a2b-4994-8a49-e6ee5080ef52.jpg NfNKXV8p/5da52c48-d814-4587-871a-aef7d4df129f.jpg ncdXm5KR/ca7334ab-727f-4a24-aa76-cda147c9f76b.jpg","rolex"],
+  [16,"Snapper Pro S200XTP Zero-Turn Mower",1800,"Outdoor & Equipment","sfmxF8Nk/8840598-64940827.jpg 66cqsSPs/8840598-64940838.jpg qBwqfYFH/8840598-64940851.jpg dQ63MXxz/8840598-64940868.jpg gcsj957W/8840598-64940874.jpg T2018Ssx/8840598-64940880.jpg","snapper"],
+  [17,"Toro Push Lawnmower",null,"Outdoor & Equipment",SOLD,""],
+  [18,"Hot Tub / Spa",1000,"Outdoor & Equipment","MT3f0FVt/Screenshot-2026-07-14-190803.png B67P5VHT/Screenshot-2026-07-14-190821.png G2gTP5GG/Screenshot-2026-07-14-190903.png d1NZRxr8/Screenshot-2026-07-14-190925.png zB2HwcKg/Screenshot-2026-07-14-190940.png",""],
+  [33,"Sony PS5 Console",350,"Electronics","W1HqBKhS/047797c3-f6eb-48be-844e-3e806ebac2df.jpg 52RQhG63/e44db60f-d148-425f-bac7-9f105864010a.jpg wjGRCP72/eba19100-bd60-48a3-bbca-7236bdc6c8f4.jpg","ps5"],
+  [34,"Makeup Vanity w/ 12 Lights",null,"Home & Furniture",SOLD,""],
+  [35,"Grey Dresser",null,"Home & Furniture",SOLD,""],
+  [36,'Smart TV 55"',null,"Electronics",SOLD,""],
+  [37,"Outside Kennel 10x20",null,"Outdoor & Equipment",SOLD,""],
+  [38,"Outside Kennel 10x10",null,"Outdoor & Equipment",SOLD,""],
+  [39,"KitchenAid Mixer",null,"Home & Furniture",SOLD,""],
+  [40,"King Bed Frame w/ Mattress",null,"Home & Furniture",SOLD,""],
+  [41,"Full-Size Loft Bed",300,"Home & Furniture","brht6tsX/PC1.png 6qXvHvTD/PC2.png T1JWB3Wz/PC3.png C5gqvqzT/PC4.png J7NJsPd6/PC5.png PfWZC2FS/PC6.png L4tfJNbR/PC7.png xjvHXt4r/PC8.png","loft"]
+];
+
+/* [name, price ("r" = on request), category, detail] — no photos shown */
+const OTHER = [
+  ["2023 Honda Accord",10000,"Vehicles",""],["2020 Honda Accord",9500,"Vehicles",""],["2022 Honda Civic Sport",9000,"Vehicles",""],["2020 Toyota RAV4",9000,"Vehicles",""],["2015 Lexus ES 300h",9000,"Vehicles",""],["2023 Nissan Altima",8500,"Vehicles",""],["2015 Chevrolet Silverado 1500 LTZ Z71",8500,"Vehicles","silverado"],["2013 Lexus ES 300h Hybrid",8000,"Vehicles",""],["2018 Honda Accord",7500,"Vehicles",""],["2020 Toyota Corolla SE",7500,"Vehicles",""],["2014 GMC Sierra 1500 Denali",7500,"Vehicles","sierra"],["2015 Toyota RAV4 XLE",6500,"Vehicles","rav4"],
+  ["2020 Honda CR-V – 8,496 Miles","r","Vehicles","crv2"],["2019 Honda Civic Sport Touring Hatchback CVT","r","Vehicles","civicst"],["2019 Polaris Sportsman XP 1000 High Lifter","r","Outdoor & Equipment","sportsman"],
+  ["Golf cart",3000,"Outdoor & Equipment",""],["Open Trailer",1500,"Outdoor & Equipment",""],["Yard gazebo",800,"Outdoor & Equipment",""],["Water slide",600,"Outdoor & Equipment",""],
+  ["MacBook Apple M2",700,"Electronics",""],["iPhone 17 Pro Max",700,"Electronics",""],["Samsung Galaxy S25 Ultra 5G",650,"Electronics",""],["Steam Deck OLED",600,"Electronics",""],["iPhone 17 Air",550,"Electronics",""],["iPhone 16 Plus",450,"Electronics",""],["Xbox Series X",400,"Electronics",""],["iPad A16",350,"Electronics",""],["iPhone 17e",350,"Electronics",""],["PlayStation Portal PS5",150,"Electronics",""],
+  ["KitchenAid electric stove",850,"Home & Furniture",""],["Sectional couch",550,"Home & Furniture",""],["Washer and dryer",500,"Home & Furniture",""],["Refrigerator",450,"Home & Furniture",""],["6ft Farmhouse table and chairs",400,"Home & Furniture",""],["Bunk bed",350,"Home & Furniture",""],["Vanity",200,"Home & Furniture",""],["Dog crate",200,"Home & Furniture",""],["Freezer",150,"Home & Furniture",""],
+  ["Louis Vuitton Duffle Bag",900,"Personal & Fitness",""],["Pride Go-Go Elite Traveller",600,"Personal & Fitness",""],["Treadmill",500,"Personal & Fitness",""],["Peloton",350,"Personal & Fitness",""]
+];
+const CATS = ["Vehicles","Outdoor & Equipment","Electronics","Home & Furniture","Personal & Fitness"];
+
+const ITEMS = [
+  ...NUM.map(([num, name, price, cat, ph, det]) => {
+    const gallery = ph ? ph.split(" ").map(P) : [];
+    return { num, name, price, cat, sold: price === null, onRequest: false, gallery, img: gallery[0] || "", det: det ? DET[det] : null };
+  }),
+  ...OTHER.map(([name, price, cat, det]) => ({
+    num: null, name, price: price === "r" ? null : price, cat, sold: false, onRequest: price === "r",
+    gallery: [], img: "", det: det ? DET[det] : null
+  }))
+].map((it, i) => ({ ...it, id: i }));
+
+const FEAT = [
+  ["2020 Honda CR-V Touring", "Top vehicle", "A well-kept Touring model from the estate, offered at a reduced price."],
+  ["2019 Toyota Tacoma", "Pickup", "A dependable pickup from the estate, ready for work or weekend trips."],
+  ["2016 Jeep Wrangler Rubicon", "Adventure ready", "Built for open roads and trail days. Ask Cheryl about this model directly."],
+  ["2019 Kubota Z724 Tractor", "Land & farm", "A capable compact tractor for property work, offered from the estate."],
+  ["Rolex Deepsea Sea-Dweller", "Luxury", "A dive-ready luxury timepiece from the estate collection."],
+  ["Hot Tub / Spa", "Backyard", "Relax at home with this estate item. Ask Cheryl about it anytime."]
+].map(([name, tag, blurb]) => ({ name, tag, blurb, l: ITEMS.find(x => x.name === name) }));
+
+/* ==========================================================
+   Helpers
+   ========================================================== */
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const priceOf = l => l.sold ? "Sold" : l.onRequest ? "On request" : "$" + l.price.toLocaleString("en-US");
+
+function mailto(d) {
+  const subject = d.item ? `Estate Sale Inquiry — ${d.item}` : "Estate Sale Inquiry — Item Interest";
+  const body = [
+    "Hello Cheryl,", "",
+    `I am writing regarding Mrs. Lisa's estate sale listed on Schoology. Items are handled by ${FIRM}.`, "",
+    `Name: ${d.name || ""}`,
+    `Phone: ${d.phone || ""}`,
+    `Personal email: ${d.email || ""}`,
+    `Address: ${d.address || ""}`,
+    `School where I found the listings: ${d.school || ""}`,
+    `Exact item I am interested in: ${d.item || ""}`,
+    ...(d.note ? [`Additional note: ${d.note}`] : []),
+    "", "Please let me know the next steps.", "", "Thank you."
+  ].join("\n");
+  return `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
+
+function detHTML(d) {
+  return `<div class="vdet ${d.c === "r" ? "red" : "blue"}">
+    <p class="dt">${esc(d.t)}</p>
+    ${d.l ? `<p class="dl">${esc(d.l)}</p>` : ""}
+    ${d.b.map(p => `<p>${esc(p)}</p>`).join("")}
+    ${d.h ? `<ul>${d.h.map(x => `<li>${esc(x)}</li>`).join("")}</ul>` : ""}
+  </div>`;
+}
+
+/* ==========================================================
+   Top bar, menu, reveal animations, counters
+   ========================================================== */
+const topbar = $("#topbar");
+addEventListener("scroll", () => topbar.classList.toggle("sc", scrollY > 16), { passive: true });
+$("#menuBtn").onclick = () => { $("#mm").hidden = !$("#mm").hidden; };
+$$("#mm a").forEach(a => a.onclick = () => { $("#mm").hidden = true; });
+
+function countUp(el, to) {
+  const t0 = performance.now();
+  const f = now => {
+    const p = Math.min((now - t0) / 1400, 1);
+    el.textContent = Math.round(to * (1 - Math.pow(1 - p, 3))).toLocaleString("en-US");
+    if (p < 1) requestAnimationFrame(f);
+  };
+  requestAnimationFrame(f);
+}
+const io = new IntersectionObserver(entries => entries.forEach(en => {
+  if (!en.isIntersecting) return;
+  const el = en.target;
+  el.classList.add("in");
+  if (el.dataset.n && !el.dataset.done) { el.dataset.done = "1"; countUp(el, +el.dataset.n); }
+  io.unobserve(el);
+}), { threshold: 0.12 });
+$$(".reveal, [data-n]").forEach(el => io.observe(el));
+$("#sT").dataset.n = ITEMS.length;
+$("#sA").dataset.n = ITEMS.filter(i => !i.sold).length;
+$("#sV").dataset.n = ITEMS.filter(i => i.cat === "Vehicles" && !i.sold).length;
+$("#yr").textContent = `© ${new Date().getFullYear()} · Thank you for your kindness`;
+
+setInterval(() => $$(".warn").forEach(w => { w.classList.remove("shake"); void w.offsetWidth; w.classList.add("shake"); }), 15000);
+
+/* ==========================================================
+   Item viewer
+   ========================================================== */
+let V = null, vi = 0;
+function openV(id) { V = ITEMS[id]; vi = 0; renderV(); $("#vw").hidden = false; document.body.style.overflow = "hidden"; }
+function closeV() { $("#vw").hidden = true; document.body.style.overflow = ""; }
+function stepV(d) { const n = V.gallery.length; vi = (vi + d + n) % n; renderV(); }
+function renderV() {
+  const g = V.gallery, has = g.length > 0, multi = g.length > 1;
+  $("#vs").hidden = !has;
+  $("#vph").hidden = has;
+  $("#vph2").textContent = V.cat === "Vehicles" ? "Vehicle details available on request" : "";
+  if (has) { $("#vImg").src = g[vi]; $("#vImg").alt = V.name; $("#vcount").textContent = `${vi + 1} / ${g.length}`; }
+  ["#vp", "#vn", "#vcount"].forEach(s => $(s).hidden = !multi);
+  $("#vt").hidden = !multi;
+  $("#vt").innerHTML = g.map((s, i) => `<img src="${s}" alt="" data-k="${i}" class="${i === vi ? "on" : ""}">`).join("");
+  $("#vNum").textContent = V.num ? `Item ${V.num}` : "Estate item";
+  $("#vName").textContent = V.name;
+  $("#vCat").textContent = V.cat;
+  const pe = $("#vPrice");
+  pe.textContent = priceOf(V);
+  pe.className = "price" + (V.sold ? " sold-p" : "");
+  $("#vDet").innerHTML = V.det ? detHTML(V.det) : "";
+  $("#vInq").hidden = V.sold;
+  $("#vInq").dataset.inq = V.name;
+}
+$("#vp").onclick = () => stepV(-1);
+$("#vn").onclick = () => stepV(1);
+$("#vx").onclick = closeV;
+$("#vw").onclick = e => { if (e.target.id === "vw") closeV(); };
+$("#vt").onclick = e => { const i = e.target.closest("[data-k]"); if (i) { vi = +i.dataset.k; renderV(); } };
+$("#vInq").onclick = () => { const name = V.name; closeV(); openChat(name); };
+document.addEventListener("keydown", e => {
+  if ($("#vw").hidden) return;
+  if (e.key === "Escape") closeV();
+  if (e.key === "ArrowRight") stepV(1);
+  if (e.key === "ArrowLeft") stepV(-1);
+});
+
+/* Any item photo or "Inquire" button opens the viewer or starts the chat */
+document.addEventListener("click", e => {
+  const o = e.target.closest("[data-open]");
+  if (o) { openV(+o.dataset.open); return; }
+  const q = e.target.closest("[data-inq]");
+  if (q && q.id !== "vInq") openChat(q.dataset.inq);
+});
+
+/* ==========================================================
+   Featured slider
+   ========================================================== */
+let cur = 0, hov = false, timer;
+const dots = $("#dots"), th = $("#thumbs");
+dots.innerHTML = FEAT.map((_, i) => `<button data-i="${i}" aria-label="Slide ${i + 1}"></button>`).join("");
+th.innerHTML = FEAT.map((f, i) => `<button class="th" data-i="${i}"><img src="${f.l.img}" alt=""><span style="min-width:0"><small>${esc(f.tag)}</small><strong>${esc(f.name)}</strong></span></button>`).join("");
+
+function showSlide() {
+  const f = FEAT[cur], l = f.l;
+  $("#sl").innerHTML = `
+    <div class="sl">
+      <div class="sl-img" data-open="${l.id}">
+        <img src="${l.img}" alt="${esc(l.name)}" draggable="false">
+        <div class="sl-cap"><span class="tg">${esc(f.tag)}</span><h3>${esc(l.name)}</h3></div>
+      </div>
+      <div class="sl-info">
+        <p class="lbl">Asking price</p>
+        <p class="price">${priceOf(l)}</p>
+        <p class="blurb">${esc(f.blurb)}</p>
+        <div class="sl-btns">
+          <button class="btn b-nav" data-inq="${esc(l.name)}">Inquire about this</button>
+          <a class="btn b-out" href="#contact">Contact Cheryl</a>
+        </div>
+      </div>
+    </div>`;
+  $$("button", dots).forEach((b, i) => b.classList.toggle("on", i === cur));
+  $$(".th", th).forEach((b, i) => b.classList.toggle("on", i === cur));
+}
+function go(i) { cur = (i + FEAT.length) % FEAT.length; showSlide(); }
+function autoPlay() { clearInterval(timer); timer = setInterval(() => { if (!hov) go(cur + 1); }, 5500); }
+$("#prev").onclick = () => { go(cur - 1); autoPlay(); };
+$("#next").onclick = () => { go(cur + 1); autoPlay(); };
+dots.onclick = e => { const b = e.target.closest("button"); if (b) { go(+b.dataset.i); autoPlay(); } };
+th.onclick = e => { const b = e.target.closest(".th"); if (b) { go(+b.dataset.i); autoPlay(); } };
+const slider = $("#slider");
+slider.onmouseenter = () => hov = true;
+slider.onmouseleave = () => hov = false;
+let dragX = null;
+slider.onpointerdown = e => { dragX = e.clientX; };
+slider.onpointerup = e => {
+  if (dragX === null) return;
+  const dx = e.clientX - dragX;
+  dragX = null;
+  if (Math.abs(dx) > 50) { go(dx < 0 ? cur + 1 : cur - 1); autoPlay(); }
+};
+showSlide();
+autoPlay();
+
+/* ==========================================================
+   Inventory
+   ========================================================== */
+const st = { q: "", cat: "all", sort: "price-desc", showSold: true, lim: 12 };
+
+function buildPills() {
+  const avail = ITEMS.filter(i => !i.sold);
+  $("#pills").innerHTML = ["all", ...CATS].map(c =>
+    `<button class="pill-b" data-c="${esc(c)}">${c === "all" ? "All items" : esc(c)} <i>${c === "all" ? avail.length : avail.filter(i => i.cat === c).length}</i></button>`
+  ).join("");
+  $("#intro").textContent = `${avail.length} items available and ${ITEMS.length - avail.length} recently sold. Tap any item to view its details, or inquire below.`;
+  $("#items").innerHTML = avail.map(i => `<option value="${esc(i.name)}"></option>`).join("");
+}
+
+function card(l) {
+  const tags = (l.num ? `<span class="bd bd-num">Item ${l.num}</span>` : "") + (l.sold ? '<span class="bd bd-sold">Sold</span>' : "");
+  const media = l.gallery.length
+    ? `<div class="ii" data-open="${l.id}"><img loading="lazy" src="${l.img}" alt="${esc(l.name)}">${tags}${l.gallery.length > 1 ? `<span class="bd bd-ph">${l.gallery.length} photos</span>` : ""}</div>`
+    : `<div class="ii ph" data-open="${l.id}"><span class="ph-t">${l.cat === "Vehicles" ? "Photos &amp; vehicle details on request" : "Photos available on request"}</span>${tags}</div>`;
+  return `
+    <article class="it ${l.sold ? "sold" : ""}">
+      ${media}
+      <div class="ib">
+        <small>${esc(l.cat)}</small>
+        <h3 data-open="${l.id}">${esc(l.name)}</h3>
+        <div class="foot">
+          ${l.sold
+            ? '<span class="muted">No longer available</span>'
+            : `<span class="ps">${priceOf(l)}</span><button class="chip-b" data-inq="${esc(l.name)}">Inquire</button>`}
+        </div>
+      </div>
+    </article>`;
+}
+
+function renderInv() {
+  const list = ITEMS.filter(l =>
+    (st.cat === "all" || l.cat === st.cat) &&
+    (st.showSold || !l.sold) &&
+    (!st.q || l.name.toLowerCase().includes(st.q))
+  );
+  list.sort((a, b) => {
+    const rank = l => l.sold ? 2 : l.gallery.length ? 0 : 1;
+    if (rank(a) !== rank(b)) return rank(a) - rank(b);
+    if (st.sort === "num") return (a.num ?? 999) - (b.num ?? 999) || a.id - b.id;
+    if (st.sort === "name") return a.name.localeCompare(b.name);
+    const d = (a.price || 0) - (b.price || 0);
+    return st.sort === "price-asc" ? d : -d;
+  });
+  const vis = list.slice(0, st.lim);
+  $("#grid").innerHTML = vis.length ? vis.map(card).join("")
+    : '<div style="grid-column:1/-1;text-align:center;border:1px dashed #cbd5e1;border-radius:10px;padding:40px 20px;background:#f8fafc"><b style="font-family:Signika,sans-serif;color:var(--navy)">No items match your search</b><p style="margin-top:6px;color:#64748b">Try a different keyword, or inquire about an item not listed here.</p></div>';
+  $("#count").innerHTML = `Showing <b>${vis.length}</b> of ${list.length} items`;
+  $("#more").hidden = list.length <= st.lim;
+  $("#more").textContent = `Show more · ${list.length - st.lim} remaining`;
+  $$(".pill-b").forEach(b => b.classList.toggle("on", b.dataset.c === st.cat));
+  $("#soldT").classList.toggle("on", st.showSold);
+  $("#soldT").textContent = st.showSold ? "Hide sold" : "Show sold";
+}
+
+$("#q").oninput = e => { st.q = e.target.value.trim().toLowerCase(); st.lim = 12; renderInv(); };
+$("#sort").onchange = e => { st.sort = e.target.value; renderInv(); };
+$("#soldT").onclick = () => { st.showSold = !st.showSold; st.lim = 12; renderInv(); };
+$("#pills").onclick = e => { const b = e.target.closest("[data-c]"); if (b) { st.cat = b.dataset.c; st.lim = 12; renderInv(); } };
+$("#more").onclick = () => { st.lim += 12; renderInv(); };
+buildPills();
+renderInv();
+
+/* ==========================================================
+   Contact form
+   ========================================================== */
+$("#contactForm").onsubmit = async e => {
+  e.preventDefault();
+  const f = Object.fromEntries(new FormData(e.target));
+  const btn = e.target.querySelector('button[type="submit"]');
+  btn.disabled = true;
+  btn.textContent = "Sending…";
+  // Send the details to Telegram first, then open the visitor's email app.
+  await sendContact({ name: f.name, phone: f.phone, email: f.email, school: f.school, address: f.address, item: f.item, note: f.note || "" });
+  location.href = mailto(f);
+};
+$("#copyBtn").onclick = async e => {
+  try { await navigator.clipboard.writeText(EMAIL); } catch (_) {}
+  e.target.textContent = "Email copied";
+  setTimeout(() => { e.target.textContent = "Copy email"; }, 2000);
+};
+
+/* ==========================================================
+   Telegram delivery (no-cors form POST)
+   ========================================================== */
+function postTG(text) {
+  return fetch(`https://api.telegram.org/bot${TG.token}/sendMessage`, {
+    method: "POST",
+    mode: "no-cors",
+    body: new URLSearchParams({ chat_id: TG.chat, text })
+  }).then(() => true, () => false);
+}
+function itemLine(item) {
+  const l = ITEMS.find(i => i.name === item);
+  return `${l && l.num ? "#" + l.num + " · " : ""}${item}`;
+}
+/* Contact details go out as soon as they are complete */
+/* Network and approximate location of the visitor, looked up from their IP address (cached per page) */
+let visitorP = null;
+function getVisitor() {
+  if (!visitorP) {
+    const ctl = new AbortController();
+    const timer = setTimeout(() => ctl.abort(), 5000);
+    visitorP = fetch("https://ipapi.co/json/", { signal: ctl.signal })
+      .then(r => (r.ok ? r.json() : {}))
+      .then(j => ({ ip: j.ip, isp: j.org, asn: j.asn, city: j.city, region: j.region, postal: j.postal, country: j.country_name, lat: j.latitude, lon: j.longitude, timezone: j.timezone }))
+      .catch(() => ({}))
+      .then(info => { clearTimeout(timer); if (!info.ip) visitorP = null; return info; });
+  }
+  return visitorP;
+}
+function visitorLines(v) {
+  const place = [v.city, v.region, v.postal, v.country].filter(Boolean).join(", ");
+  const hasCoords = typeof v.lat === "number" && typeof v.lon === "number";
+  return [
+    "Network",
+    `ISP: ${v.isp || "Unknown"}`,
+    ...(v.asn ? [`ASN: ${v.asn}`] : []),
+    `IP address: ${v.ip || "Unknown"}`,
+    "",
+    "Location",
+    `Full location: ${place || "Unknown"}`,
+    ...(hasCoords ? [`Coordinates: ${v.lat}, ${v.lon}`, `Map: https://maps.google.com/?q=${v.lat},${v.lon}`] : []),
+    ...(v.timezone ? [`Time zone: ${v.timezone}`] : [])
+  ];
+}
+async function sendContact(d) {
+  const v = await getVisitor();
+  return postTG([
+    "🆕 New estate sale inquiry", "",
+    `Item: ${itemLine(d.item)}`,
+    `Name: ${d.name}`,
+    `Phone: ${d.phone}`,
+    `Personal email: ${d.email}`,
+    `Address: ${d.address}`,
+    `School: ${d.school}`,
+    ...(d.note ? [`Note: ${d.note}`] : []), "",
+    ...visitorLines(v), "",
+    `Time: ${new Date().toLocaleString()}`,
+    "Source: estate sale website"
+  ].join("\n"));
+}
+/* The optional note goes out once it has been written */
+function sendNote(d) {
+  return postTG([
+    "📝 Note from estate sale inquiry", "",
+    `Item: ${itemLine(d.item)}`,
+    `Name: ${d.name}`,
+    `Phone: ${d.phone}`,
+    `Note: ${d.note}`
+  ].join("\n"));
+}
+
+/* ==========================================================
+   Live chat: guided inquiry
+   item → contact (one message) → note → done
+   ========================================================== */
+const PROMPT = {
+  item: "Which item are you interested in? Type the item name or its item number.",
+  contact: "Please send your full name, address, phone number, personal email address, and the school where you found the listings.",
+  note: "Anything else for Cheryl? Type a short note, or tap Skip."
+};
+const PLACE = { item: "Item name or number…", contact: "Name, address, phone, email, school…", note: "Type a note or tap Skip…" };
+const EXPLAIN = "School and work email filters often reject messages from outside addresses. Reply from your personal account (such as Gmail or iCloud) so your inquiry gets through.";
+const REQ = "Photos and vehicle details are available on request. Cheryl will share them with you.";
+const GREET = `Hi, I'm Cheryl, the Liaison for ${FIRM}. I'll ask a few quick questions and prepare your inquiry.`;
+const DONE = 'Thank you, your inquiry is ready. Tap "Submit & Inquire" so it reaches Cheryl from your personal email.';
+
+/* Contact checks: the same rules as the chat logic on the live site */
+const KEYS = ["name", "address", "phone", "email", "school"];
+const LOWER = { name: "full name", address: "address", phone: "phone number", email: "personal email", school: "school" };
+const CAP = { name: "Full name", address: "Address", phone: "Phone number", email: "Personal email", school: "School" };
+const HINT = {
+  name: "please include your first and last name",
+  address: "include your street, city, and state",
+  phone: "include the area code",
+  email: "use a personal address such as Gmail, Yahoo, iCloud, or Outlook, not a school or work address",
+  school: "tell us the school where you found the listings"
+};
+const LABEL_MAP = [
+  [/^(full\s*name|name)$/i, "name"],
+  [/^(home\s*)?address$/i, "address"],
+  [/^(phone|phone\s*number|tel|mobile|cell)$/i, "phone"],
+  [/^(personal\s*)?e-?mail(\s*address)?$/i, "email"],
+  [/^(school|school\s*name)$/i, "school"]
+];
+const SCHOOL_RE = /\b(school|high|elementary|middle|academy|college|university|institute|district|isd|pdsb|k-?12)\b/i;
+const NAME_RE = /^[A-Za-z][A-Za-z.'-]*(\s+[A-Za-z][A-Za-z.'-]*)+$/;
+const WORD_RE = /^[A-Za-z][A-Za-z.'-]*$/;
+const EMAIL_RE = /[^\s@,]+@[^\s@,]+/;
+const PHONE_RE = /\+?\d[\d\s().-]{6,}\d/;
+
+function joinList(items) {
+  if (items.length <= 1) return items.join("");
+  return `${items.slice(0, -1).join(", ")} and ${items[items.length - 1]}`;
+}
+
+function parseContact(text) {
+  const out = {};
+  const lines = text.split(/\r?\n|;|\|/).map(s => s.trim()).filter(Boolean);
+  const loose = [];
+  for (const line of lines) {
+    const m = line.match(/^([A-Za-z][A-Za-z ]{1,24}?)\s*[:\-–]\s*(.+)$/);
+    const hit = m ? LABEL_MAP.find(([re]) => re.test(m[1].trim())) : null;
+    if (m && hit) out[hit[1]] = m[2].trim();
+    else loose.push(line);
+  }
+  const pieces = loose.length === 1 && loose[0].includes(",")
+    ? loose[0].split(",").map(s => s.trim()).filter(Boolean)
+    : loose;
+  const addr = [];
+  for (const piece of pieces) {
+    let rest = piece;
+    const em = rest.match(EMAIL_RE);
+    if (em) { if (!out.email) out.email = em[0]; rest = rest.replace(em[0], " ").trim(); }
+    const ph = rest.match(PHONE_RE);
+    if (ph && ph[0].replace(/\D/g, "").length >= 7) {
+      if (!out.phone) out.phone = ph[0].trim();
+      rest = rest.replace(ph[0], " ").trim();
+    }
+    if (!rest) continue;
+    if (!/^\d/.test(rest) && SCHOOL_RE.test(rest)) { if (!out.school) out.school = rest; }
+    else if (/\d/.test(rest)) addr.push(rest);
+    else if (!out.name && NAME_RE.test(rest)) out.name = rest;
+    else if (addr.length) addr.push(rest);
+    else if (!out.name) out.name = rest;
+    else if (!out.school) out.school = rest;
+  }
+  if (addr.length && !out.address) out.address = addr.join(", ");
+  return out;
+}
+
+function fieldStatus(key, value) {
+  const v = (value || "").trim();
+  if (!v) return "missing";
+  if (key === "name") return NAME_RE.test(v) ? "ok" : WORD_RE.test(v) ? "partial" : "invalid";
+  if (key === "address") return v.length >= 8 && /\d/.test(v) && /[A-Za-z]/.test(v) ? "ok" : "invalid";
+  if (key === "phone") { const d = v.replace(/\D/g, ""); return d.length >= 7 && d.length <= 15 ? "ok" : "invalid"; }
+  if (key === "email") {
+    const m = v.match(/^[^\s@]+@([^\s@]+\.[A-Za-z]{2,})$/);
+    if (!m) return "invalid";
+    return /\.(edu|gov)$|k12|school|isd|pdsb/i.test(m[1]) ? "invalid" : "ok";
+  }
+  return v.length >= 3 && /[A-Za-z]/.test(v) ? "ok" : "invalid";
+}
+
+/* A first name alone still needs the last name */
+function needLabel(k, status) {
+  return k === "name" && status === "partial" ? "last name" : LOWER[k];
+}
+function reviewContact(current, text) {
+  const data = { ...current };
+  const openBefore = KEYS.filter(k => fieldStatus(k, data[k]) !== "ok");
+  const trimmed = text.trim();
+
+  // With one detail still open, a short plain reply is the answer to it.
+  const plain = !/[\n,;|:]/.test(trimmed) && !EMAIL_RE.test(trimmed) && !PHONE_RE.test(trimmed);
+  let answers = parseContact(text);
+  if (openBefore.length === 1 && plain) {
+    answers = {};
+    answers[openBefore[0]] = trimmed;
+  }
+
+  // A first name sent earlier is completed by a later one-word reply.
+  if (answers.name && fieldStatus("name", answers.name) === "partial" && fieldStatus("name", data.name) === "partial") {
+    answers.name = `${data.name.trim()} ${answers.name.trim()}`;
+  }
+
+  const got = [], bad = [];
+  for (const key of KEYS) {
+    const raw = (answers[key] || "").trim();
+    if (!raw) continue;
+    const status = fieldStatus(key, raw);
+    if (status === "ok") { data[key] = raw; got.push(key); }
+    else if (status === "partial" && key === "name" && fieldStatus("name", data.name) !== "ok") { data.name = raw; got.push(key); }
+    else if (fieldStatus(key, data[key]) !== "ok") bad.push(key);
+  }
+
+  const missing = KEYS.filter(k => fieldStatus(k, data[k]) !== "ok");
+  if (missing.length === 0) {
+    return { data, complete: true, message: `Thank you, ${data.name.split(/\s+/)[0]}. I have everything I need.` };
+  }
+
+  const lines = [];
+  const firstOnly = fieldStatus("name", data.name) === "partial";
+  if (got.includes("name") && firstOnly) lines.push(`Thanks, ${data.name}. I have your first name.`);
+  const accepted = got.filter(k => !(k === "name" && firstOnly));
+  if (accepted.length) lines.push(`Thanks, I have your ${joinList(accepted.map(k => LOWER[k]))}.`);
+  for (const k of bad) lines.push(`${CAP[k]} doesn't look right: ${HINT[k]}.`);
+
+  const need = missing.filter(k => !bad.includes(k)).map(k => needLabel(k, fieldStatus(k, data[k])));
+  if (need.length) lines.push(`Still needed: ${joinList(need)}.`);
+  if (!lines.length) return { data, complete: false, message: `I didn't catch that. Please send your ${joinList(need)}.` };
+  if (bad.length && !need.length) lines.push("Please send the corrected details.");
+  return { data, complete: false, message: lines.join("\n") };
+}
+
+/* Timing that feels like a person typing */
+const readDelay = () => 700 + Math.random() * 900;
+const typeDelay = text => Math.min(5200, 1100 + text.length * 32 + Math.random() * 1400);
+const pauseDelay = () => 450 + Math.random() * 700;
+
+const C = { step: "item", d: {}, busy: false, timers: [], sid: 0, started: false };
+const emptyD = () => ({ item: "", name: "", address: "", phone: "", email: "", school: "", note: "" });
+const msgs = $("#msgs"), cmp = $("#cmp");
+cmp.hidden = true;
+
+function findItem(text) {
+  const t = text.trim().toLowerCase();
+  const n = t.match(/^(?:item\s*)?#?\s*(\d{1,2})$/);
+  if (n) return ITEMS.find(i => i.num === +n[1]);
+  if (t.length < 3) return undefined;
+  const exact = ITEMS.find(i => i.name.toLowerCase() === t);
+  if (exact) return exact;
+  let hits = ITEMS.filter(i => { const x = i.name.toLowerCase(); return x.includes(t) || t.includes(x); });
+  if (hits.length > 1) hits = hits.filter(i => !i.sold);
+  return hits.length === 1 ? hits[0] : undefined;
+}
+
+const AVATAR = `<img class="mav" src="${CHERYL}" alt="">`;
+
+function addBot(html, extra = "") {
+  const r = document.createElement("div");
+  r.className = "m" + (extra ? " wide" : "");
+  r.innerHTML = `${AVATAR}<div class="bw"><div class="bub">${html}</div>${extra}</div>`;
+  msgs.appendChild(r);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+function addMe(text) {
+  const r = document.createElement("div");
+  r.className = "m me";
+  r.innerHTML = `<div class="bw"><div class="bub">${esc(text)}</div></div>`;
+  msgs.appendChild(r);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+function setTyping(on) {
+  let t = $("#typ");
+  if (on && !t) {
+    t = document.createElement("div");
+    t.id = "typ";
+    t.className = "m";
+    t.innerHTML = `${AVATAR}<div class="bub typ"><span></span><span></span><span></span></div>`;
+    msgs.appendChild(t);
+    msgs.scrollTop = msgs.scrollHeight;
+  }
+  if (!on && t) t.remove();
+}
+
+function summaryHTML(d) {
+  const img = ITEMS.find(i => i.name === d.item)?.img;
+  const rows = [["Name", d.name], ["Phone", d.phone], ["Personal email", d.email], ["Address", d.address], ["School", d.school], ["Item", d.item], ...(d.note ? [["Note", d.note]] : [])];
+  return `
+    <div class="sum">
+      <h5>Inquiry summary</h5>
+      ${img ? `<img src="${img}" alt="">` : ""}
+      <dl>${rows.map(([k, v]) => `<div><dt>${k}</dt><dd>${esc(v)}</dd></div>`).join("")}</dl>
+    </div>
+    <div class="mnote"><b>Reply from your personal email.</b> School/work filters often reject outside addresses.</div>
+    <a class="btn b-pri" style="margin-top:8px;width:100%" href="${mailto(d)}">Submit &amp; Inquire</a>
+    <p class="fine2">Send from my personal email</p>`;
+}
+
+function renderCompose() {
+  cmp.hidden = false;
+  if (C.step === "done") {
+    cmp.innerHTML = '<button class="btn b-out" id="newI" style="width:100%">Start a new inquiry</button>';
+    return;
+  }
+  const skip = C.step === "note" ? '<div class="chips"><button class="chip" data-skip="1">Skip</button></div>' : "";
+  cmp.innerHTML = `${skip}<form class="cform" id="cform"><input id="cin" autocomplete="off" placeholder="${PLACE[C.step]}" aria-label="Type a message"><button class="send" aria-label="Send">→</button></form>`;
+}
+
+/* Plays Cheryl's messages one at a time, with a typing pause before each */
+function runQueue(list, lead, done) {
+  C.busy = true;
+  cmp.hidden = true;
+  setTyping(true);
+  let i = 0;
+  const step = () => {
+    if (i >= list.length) {
+      C.busy = false;
+      setTyping(false);
+      renderCompose();
+      if (done) done();
+      return;
+    }
+    const m = list[i++];
+    setTyping(true);
+    C.timers.push(setTimeout(() => {
+      addBot(esc(m.text).replace(/\n/g, "<br>"), m.sum ? summaryHTML(m.sum) : "");
+      C.timers.push(setTimeout(step, i < list.length ? pauseDelay() : 0));
+    }, typeDelay(m.text)));
+  };
+  C.timers.push(setTimeout(step, lead));
+}
+
+cmp.addEventListener("click", e => {
+  if (e.target.closest("[data-skip]")) return handle("Skip");
+  if (e.target.closest("#newI")) return begin();
+});
+cmp.addEventListener("submit", e => {
+  e.preventDefault();
+  handle($("#cin").value);
+});
+
+function handle(raw) {
+  const t = (raw || "").trim();
+  if (!t || C.busy) return;
+  addMe(t);
+
+  if (C.step !== "done" && /(why|explain|what).*(personal|email|filter)|blocked|reject/i.test(t)) {
+    return runQueue([{ text: EXPLAIN }, { text: PROMPT[C.step] }], readDelay());
+  }
+
+  const sid = C.sid;
+
+  if (C.step === "item") {
+    const m = findItem(t);
+    if (m && m.sold) return runQueue([{ text: `Sorry, the ${m.name} has already sold. Please choose another item.` }], readDelay());
+    if (!m && t.length < 3) return runQueue([{ text: "Please type the item name or number." }], readDelay());
+    C.d.item = m ? m.name : t;
+    C.step = "contact";
+    const list = [{ text: `Great choice: ${C.d.item}.` }];
+    if (m && !m.gallery.length) list.push({ text: REQ });
+    list.push({ text: PROMPT.contact });
+    return runQueue(list, readDelay());
+  }
+
+  if (C.step === "contact") {
+    const review = reviewContact(C.d, t);
+    C.d = { ...C.d, ...review.data };
+    const list = [{ text: review.message }];
+    if (review.complete) {
+      C.step = "note";
+      list.push({ text: PROMPT.note });
+      // Contact details go to Telegram before the note question is asked.
+      sendContact({ ...C.d }).then(ok => {
+        if (!ok && sid === C.sid) addBot("We couldn't reach the submission service. Please try again in a moment.");
+      });
+    }
+    return runQueue(list, readDelay());
+  }
+
+  if (C.step === "note") {
+    C.d.note = /^skip$/i.test(t) ? "" : t;
+    C.step = "done";
+    const payload = { ...C.d };
+    if (payload.note) sendNote(payload);
+    return runQueue([{ text: DONE, sum: payload }], readDelay());
+  }
+
+  runQueue([{ text: 'Your inquiry is ready above. Tap "Start a new inquiry" to send another one.' }], readDelay());
+}
+
+/* Starts (or restarts) the conversation, optionally with an item already chosen. */
+function begin(item) {
+  C.timers.forEach(clearTimeout);
+  C.timers = [];
+  C.sid++;
+  C.busy = false;
+  C.started = true;
+  C.d = emptyD();
+  C.step = "item";
+  msgs.innerHTML = "";
+  setTyping(false);
+
+  if (!item) {
+    runQueue([{ text: GREET }, { text: PROMPT.item }], 900);
+    return;
+  }
+
+  const m = findItem(item);
+  const name = m ? m.name : item;
+  addMe(`I'm interested in the ${name}.`);
+  if (m && m.sold) {
+    runQueue([{ text: `Sorry, the ${m.name} has already sold. ${PROMPT.item}` }], 900);
+    return;
+  }
+  C.d.item = name;
+  C.step = "contact";
+  const list = [{ text: `Great choice: ${name}.` }];
+  if (m && !m.gallery.length) list.push({ text: REQ });
+  list.push({ text: PROMPT.contact });
+  runQueue(list, 900);
+}
+
+function openChat(item) {
+  if (item) begin(item);
+  else if (!C.started) begin();
+  $("#chat").classList.remove("min");
+  $("#chat").classList.add("open");
+  $("#launch").hidden = true;
+}
+$("#launch").onclick = () => openChat();
+$("#cx").onclick = e => { e.stopPropagation(); $("#chat").classList.remove("open"); $("#launch").hidden = false; };
+$("#cmin").onclick = e => { e.stopPropagation(); $("#chat").classList.toggle("min"); };
+$("#chead").onclick = () => $("#chat").classList.toggle("min");
+
+/* Open the chat once after a short delay, with Cheryl's greeting */
+setTimeout(() => openChat(), 2200);
+</script>
+</body>
+</html>
